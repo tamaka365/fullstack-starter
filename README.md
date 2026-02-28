@@ -12,45 +12,6 @@ cd fullstack-starter
 pnpm install
 ```
 
-**2. 生成项目**
-
-```bash
-pnpm run create
-```
-
-按提示选择要创建的项目（frontend / backend），脚本会自动从模板复制并安装依赖。
-
-**3. 启动开发**
-
-```bash
-pnpm dev        # 同时启动前后端
-pnpm dev fe     # 仅启动前端（Next.js on :3000）
-pnpm dev be     # 仅启动后端（NestJS on :3001）
-```
-
-## 目录结构
-
-```
-.
-├── packages/
-│   ├── ui/        # @starter/ui — React 组件库（vanilla-extract）
-│   ├── hooks/     # @starter/hooks — 常用 React hooks
-│   └── utils/     # @starter/utils — 工具函数
-├── templates/
-│   ├── nextjs/    # Next.js 15 App Router 模板
-│   └── backend/   # NestJS 11 模板
-├── frontend/      # 由 create 命令生成
-└── backend/       # 由 create 命令生成
-```
-
-## 共享包
-
-| 包 | 说明 |
-|----|------|
-| `@starter/ui` | Button 等基础组件，基于 vanilla-extract，通过 `transpilePackages` 消费 |
-| `@starter/hooks` | `useLocalStorage`、`useDebounce` |
-| `@starter/utils` | `cn`（classname 合并） |
-
 ## 常用命令
 
 ```bash
@@ -66,3 +27,20 @@ pnpm build fe   # 仅构建前端
 pnpm build be   # 仅构建后端
 pnpm typecheck  # 对所有工作空间进行类型检查
 ```
+```
+
+## 目录结构
+
+```
+.
+├── packages/
+│   ├── ui/        # @starter/ui — React 组件库（vanilla-extract）
+│   ├── hooks/     # @starter/hooks — 常用 React hooks
+│   └── utils/     # @starter/utils — 工具函数
+├── templates/
+│   ├── nextjs/    # Next.js App Router 模板目录
+│   └── backend/   # NestJS 模板目录
+├── frontend/      # 由 create 命令生成
+└── backend/       # 由 create 命令生成
+```
+
