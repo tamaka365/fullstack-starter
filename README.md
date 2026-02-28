@@ -1,0 +1,46 @@
+# fullstack-starter
+
+一个基于 pnpm monorepo 的 Node.js 全栈 starter，内置 React 组件库、常用 hooks、工具函数，以及 Next.js 前端和 NestJS 后端项目模板，通过 `pnpm run create` 一键生成项目。
+
+## 快速开始
+
+**1. clone 并激活 git hooks**
+
+```bash
+git clone <repo-url>
+cd fullstack-starter
+pnpm install
+```
+
+## 常用命令
+
+```bash
+pnpm create     # 从模板生成 frontend / backend
+pnpm dev        # 同时启动前后端（watch 模式）
+pnpm dev fe     # 仅启动前端
+pnpm dev be     # 仅启动后端
+pnpm start      # 同时启动前后端（生产模式）
+pnpm start fe   # 仅启动前端
+pnpm start be   # 仅启动后端
+pnpm build      # 同时构建前后端
+pnpm build fe   # 仅构建前端
+pnpm build be   # 仅构建后端
+pnpm typecheck  # 对所有工作空间进行类型检查
+```
+```
+
+## 目录结构
+
+```
+.
+├── packages/
+│   ├── ui/        # @starter/ui — React 组件库（vanilla-extract）
+│   ├── hooks/     # @starter/hooks — 常用 React hooks
+│   └── utils/     # @starter/utils — 工具函数
+├── templates/
+│   ├── nextjs/    # Next.js App Router 模板目录
+│   └── backend/   # NestJS 模板目录
+├── frontend/      # 由 create 命令生成
+└── backend/       # 由 create 命令生成
+```
+

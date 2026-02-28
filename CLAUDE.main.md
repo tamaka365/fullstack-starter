@@ -2,6 +2,33 @@
 
 本文件为 Claude Code（claude.ai/code）在此仓库中工作时提供指引。
 
+## 项目描述
+
+项目描述和使用方式以 `README.md` 为准：
+
+- 如果 `README.md` 不存在，主动创建它
+- 如果 `README.md` 存在但缺少项目描述，向用户确认后写入
+
+## 开发流程
+
+维护 `.claude/docs/backlog.md` 作为需求池，按以下流程执行：
+
+1. **收集需求**：用户提出新需求时立即写入 `backlog.md`，循环提问直到用户明确表示没有为止
+2. **规划版本**：分析需求池，与用户逐条确认优先级与可行性，挑选适合下一版本的内容写入 `todo.md`
+3. **todo 格式**：每个版本条目包含版本简介、详细文档链接，并标注状态「进行中 / 已完成」，开发中实时更新
+4. **编写文档**：分析 todo 版本需求，与用户交互确认细节，编写对应的详细版本文档
+5. **开发节奏**：每完成详细文档中的一个步骤，立即提交 git 并更新 `.claude/docs/changelog.md`
+
+### 版本开发中出现新需求
+
+| 情况 | 处理方式 |
+|------|---------|
+| 与当前版本无关 | 写入 `backlog.md`，当前版本完成后再规划 |
+| 影响当前版本范围 | 与用户讨论，决定是否调整当前版本文档；不新开版本 |
+| 紧急 bug 或阻塞项 | 立即修复提交，不走版本规划流程 |
+
+**原则：backlog 随时可写，但不打断正在进行的版本步骤；等当前步骤完成提交后再决定是否调整后续计划。**
+
 ## 工具链
 
 - 包管理器：**pnpm**（必须）
@@ -11,14 +38,17 @@
 ## 常用命令
 
 ```bash
-# 从模板生成 frontend 和 backend 项目
-pnpm run create
-
-# 以 watch 模式运行所有包
-pnpm dev
-
-# 对所有工作空间进行类型检查
-pnpm typecheck
+pnpm create     # 从模板生成 frontend / backend
+pnpm dev        # 同时启动前后端（watch 模式）
+pnpm dev fe     # 仅启动前端
+pnpm dev be     # 仅启动后端
+pnpm start      # 同时启动前后端（生产模式）
+pnpm start fe   # 仅启动前端
+pnpm start be   # 仅启动后端
+pnpm build      # 同时构建前后端
+pnpm build fe   # 仅构建前端
+pnpm build be   # 仅构建后端
+pnpm typecheck  # 对所有工作空间进行类型检查
 ```
 
 ## 架构
