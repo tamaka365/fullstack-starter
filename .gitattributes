@@ -1,0 +1,5 @@
+# Sentinel files used by .githooks/pre-commit to filter dev-only content when merging into main.
+# Always accept dev's version to avoid modify/delete conflicts caused by previous filter commits.
+.gitignore.main       merge=use-theirs
+CLAUDE.main.md        merge=use-theirs
+.claude/docs.main/**  merge=use-theirs

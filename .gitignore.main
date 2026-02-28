@@ -4,4 +4,3 @@ dist/
 build/
 *.local
 .DS_Store
-test
