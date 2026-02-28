@@ -2,6 +2,13 @@
 
 本文件为 Claude Code（claude.ai/code）在此仓库中工作时提供指引。
 
+## 项目描述
+
+项目描述和使用方式以 `README.md` 为准：
+
+- 如果 `README.md` 不存在，主动创建它
+- 如果 `README.md` 存在但缺少项目描述，向用户提问确认后再写入
+
 ## 这是 Starter 的开发分支
 
 这是 fullstack-starter 项目的开发分支。架构说明、常用命令和 monorepo 结构请参阅
