@@ -26,7 +26,6 @@ git add .gitignore
 rm -rf docs/
 rm -f .gitignore.main
 
-# Amend the merge commit to exclude the filtered content
-git commit --amend --no-edit > /dev/null 2>&1
+git commit -m "chore: apply main branch filters"
 
 echo "Done: docs/ removed, .gitignore.main applied as .gitignore"
