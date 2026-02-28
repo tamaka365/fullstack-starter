@@ -23,8 +23,9 @@ pnpm run create
 **3. 启动开发**
 
 ```bash
-pnpm --filter frontend dev   # Next.js on :3000
-pnpm --filter backend dev    # NestJS on :3001
+pnpm dev        # 同时启动前后端
+pnpm dev fe     # 仅启动前端（Next.js on :3000）
+pnpm dev be     # 仅启动后端（NestJS on :3001）
 ```
 
 ## 目录结构
@@ -53,7 +54,12 @@ pnpm --filter backend dev    # NestJS on :3001
 ## 常用命令
 
 ```bash
-pnpm run create   # 从模板生成 frontend / backend
-pnpm dev          # 以 watch 模式运行所有包
-pnpm typecheck    # 对所有工作空间进行类型检查
+pnpm create     # 从模板生成 frontend / backend
+pnpm dev        # 同时启动前后端（watch 模式）
+pnpm dev fe     # 仅启动前端
+pnpm dev be     # 仅启动后端
+pnpm start      # 同时启动前后端（生产模式）
+pnpm start fe   # 仅启动前端
+pnpm start be   # 仅启动后端
+pnpm typecheck  # 对所有工作空间进行类型检查
 ```

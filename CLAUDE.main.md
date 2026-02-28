@@ -38,14 +38,14 @@
 ## 常用命令
 
 ```bash
-# 从模板生成 frontend 和 backend 项目
-pnpm run create
-
-# 以 watch 模式运行所有包
-pnpm dev
-
-# 对所有工作空间进行类型检查
-pnpm typecheck
+pnpm create     # 从模板生成 frontend / backend
+pnpm dev        # 同时启动前后端（watch 模式）
+pnpm dev fe     # 仅启动前端
+pnpm dev be     # 仅启动后端
+pnpm start      # 同时启动前后端（生产模式）
+pnpm start fe   # 仅启动前端
+pnpm start be   # 仅启动后端
+pnpm typecheck  # 对所有工作空间进行类型检查
 ```
 
 ## 架构
