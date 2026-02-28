@@ -21,3 +21,13 @@
 详细文档：[.claude/docs/v0.2.0.md](.claude/docs/v0.2.0.md)
 
 状态：**已完成**
+
+---
+
+## v0.3.0 — new 命令
+
+从 `templates/` 目录选择模板，创建新项目到 `frontend/<name>` 或 `backend/<name>`，依赖去重后在根目录执行 `pnpm install`。
+
+详细文档：[.claude/docs/v0.3.0.md](.claude/docs/v0.3.0.md)
+
+状态：**已完成**
