@@ -2,16 +2,14 @@
 
 未规划的需求池，按来源归类整理，可以新增类型。
 
----
+## CLI 命令
 
-## 项目模板
+### 新增命令
 
-- 模板支持多个，按类型分目录存放：`templates/frontend/<name>/`、`templates/backend/<name>/`，create 命令动态扫描可用模板
-- 初始模板：`templates/nextjs-basic`（Next.js 15 App Router，集成 vanilla-extract，引用 @starter/* 包，独立 tsconfig）
-- 初始模板：`templates/nestjs-basic`（NestJS 11，包含 health 端点，独立 tsconfig）
+- **remove 命令**：列出 workspace 用户创建的项目（pnpm-workspace.yaml 中排除 `packages/*` 和 `templates/*` 的条目），交互选择后二次确认，删除目录并从 pnpm-workspace.yaml 移除对应条目
+- **rename 命令**：列出 workspace 用户创建的项目，输入新名称，同步重命名目录、更新项目 package.json 的 name 字段、更新 pnpm-workspace.yaml 中的路径
 
----
+### 优化现有命令
 
-## create 命令
-
-- 实现 `scripts/create.mjs`：动态扫描 `templates/` 目录列出可用模板，@inquirer/prompts 交互选择模板和目标目录名（默认 frontend / backend），从模板复制并执行 pnpm install，输出 next steps 提示
+- **templatize 优化**：来源改为从 workspace 用户创建的项目中选择（而非固定的 frontend/backend 目录）；存储位置改为列出 `templates/` 下已有类型目录供选择，同时提供「新建类型」选项可手动输入名称（如 `electron`），再在选定类型下选择已有模板或新建
+- **dev/build/start 重设计**：三个命令改为交互式，提示用户选择具体项目或"全部"；选"全部"时并行执行所有用户创建的项目（排除 packages/templates）；移除 `dev:fe`、`dev:be`、`build:fe`、`build:be`、`start:fe`、`start:be` 快捷命令
