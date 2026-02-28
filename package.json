@@ -1,7 +1,7 @@
 {
   "name": "fullstack-starter",
   "private": true,
-  "packageManager": "pnpm@latest",
+  "packageManager": "pnpm@10.30.3",
   "scripts": {
     "create": "node scripts/create.mjs",
     "templatize": "node scripts/templatize.mjs",
