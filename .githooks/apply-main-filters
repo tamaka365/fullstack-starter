@@ -1,0 +1,36 @@
+#!/bin/sh
+# Shared filtering logic called by pre-merge-commit (clean merges)
+# and pre-commit (conflict-resolution commits).
+# Reads all content from the MERGE_HEAD tree, never from the working tree.
+
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+[ "$CURRENT_BRANCH" = "main" ] || exit 0
+
+MERGE_HEAD=$(cat .git/MERGE_HEAD)
+git cat-file -e "$MERGE_HEAD:.gitignore.main" 2>/dev/null || exit 0
+
+echo "Applying main branch filters..."
+
+git show "$MERGE_HEAD:.gitignore.main" > .gitignore
+git add .gitignore
+git rm --cached .gitignore.main > /dev/null 2>&1 || true
+rm -f .gitignore.main
+
+if git cat-file -e "$MERGE_HEAD:CLAUDE.main.md" 2>/dev/null; then
+  git show "$MERGE_HEAD:CLAUDE.main.md" > CLAUDE.md
+  git add CLAUDE.md
+  git rm --cached CLAUDE.main.md > /dev/null 2>&1 || true
+  rm -f CLAUDE.main.md
+fi
+
+git rm -r --cached .claude/docs/ > /dev/null 2>&1 || true
+rm -rf .claude/docs/
+
+if [ -d ".claude/docs.main" ]; then
+  cp -r .claude/docs.main .claude/docs
+  git rm -r --cached .claude/docs.main > /dev/null 2>&1 || true
+  rm -rf .claude/docs.main
+  git add .claude/docs/
+fi
+
+echo "Done"
