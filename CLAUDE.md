@@ -19,7 +19,7 @@ and in projects that clone from it.
 - `main` — clean template branch, future projects clone from here
 
 Develop on `dev`. When ready to publish, switch to `main` and run `git merge dev` — the
-`post-merge` hook will automatically filter out dev-only content.
+`pre-commit` hook will automatically filter out dev-only content.
 
 ## Important: After Cloning
 

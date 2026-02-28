@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# Only apply when completing a merge into main.
+# .git/MERGE_HEAD exists during both normal merges and conflict-resolved merges.
+[ -f ".git/MERGE_HEAD" ] || exit 0
+
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+[ "$CURRENT_BRANCH" = "main" ] || exit 0
+
+# Detect starter dev branch by checking the merged commit's tree for .gitignore.main.
+# This is reliable even when git auto-resolves the file as "deleted" in the working tree.
+MERGE_HEAD=$(cat .git/MERGE_HEAD)
+git cat-file -e "$MERGE_HEAD:.gitignore.main" 2>/dev/null || exit 0
+
+echo "Applying main branch filters..."
+
+# 1. Replace .gitignore with the main version (read from MERGE_HEAD tree)
+git show "$MERGE_HEAD:.gitignore.main" > .gitignore
+git add .gitignore
+git rm --cached .gitignore.main > /dev/null 2>&1 || true
+rm -f .gitignore.main
+
+# 2. Replace CLAUDE.md with the template version (CLAUDE.main.md)
+if git cat-file -e "$MERGE_HEAD:CLAUDE.main.md" 2>/dev/null; then
+  git show "$MERGE_HEAD:CLAUDE.main.md" > CLAUDE.md
+  git add CLAUDE.md
+  git rm --cached CLAUDE.main.md > /dev/null 2>&1 || true
+  rm -f CLAUDE.main.md
+fi
+
+# 3. Remove dev-only .claude/docs/, install .claude/docs.main/ as .claude/docs/
+git rm -r --cached .claude/docs/ > /dev/null 2>&1 || true
+rm -rf .claude/docs/
+if [ -d ".claude/docs.main" ]; then
+  cp -r .claude/docs.main .claude/docs
+  git rm -r --cached .claude/docs.main > /dev/null 2>&1 || true
+  rm -rf .claude/docs.main
+  git add .claude/docs/
+fi
+
+echo "Done"
