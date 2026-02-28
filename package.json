@@ -1,8 +1,25 @@
 {
   "name": "fullstack-starter",
   "private": true,
+  "packageManager": "pnpm@latest",
   "scripts": {
+    "create": "node scripts/create.mjs",
+    "templatize": "node scripts/templatize.mjs",
+    "dev": "pnpm --parallel run dev",
+    "dev:fe": "pnpm --filter frontend run dev",
+    "dev:be": "pnpm --filter backend run dev",
+    "start": "pnpm --parallel run start",
+    "start:fe": "pnpm --filter frontend run start",
+    "start:be": "pnpm --filter backend run start",
+    "build": "pnpm --parallel run build",
+    "build:fe": "pnpm --filter frontend run build",
+    "build:be": "pnpm --filter backend run build",
+    "typecheck": "pnpm --recursive run typecheck",
     "prepare": "git config core.hooksPath .githooks && git config branch.main.mergeoptions --no-ff && git config merge.use-theirs.name 'Always accept theirs' && git config merge.use-theirs.driver 'cp %B %A'"
+  },
+  "devDependencies": {
+    "@inquirer/prompts": "^7.5.0",
+    "typescript": "^5.8.2"
   },
   "engines": {
     "node": ">=20",
