@@ -23,4 +23,5 @@ Run `pnpm install` to activate the git hook via the `prepare` script:
 pnpm install
 ```
 
-This sets `core.hooksPath` to `.githooks`, enabling the `pre-merge-commit` filter.
+This sets `core.hooksPath` to `.githooks` and configures `branch.main.mergeoptions = --no-ff`,
+ensuring merges into `main` always produce a merge commit (required for `pre-merge-commit` to fire).

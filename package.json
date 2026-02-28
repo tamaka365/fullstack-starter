@@ -2,7 +2,7 @@
   "name": "fullstack-starter",
   "private": true,
   "scripts": {
-    "prepare": "git config core.hooksPath .githooks"
+    "prepare": "git config core.hooksPath .githooks && git config branch.main.mergeoptions --no-ff"
   },
   "engines": {
     "node": ">=20",
