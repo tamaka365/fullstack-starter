@@ -1,4 +1,7 @@
 #!/bin/sh
 # Fires during clean (auto-resolved) merges.
+echo "[pre-merge-commit] fired" >> /tmp/hook-debug.log
+echo "MERGE_HEAD file: $(ls .git/MERGE_HEAD 2>&1)" >> /tmp/hook-debug.log
+echo "branch: $(git rev-parse --abbrev-ref HEAD)" >> /tmp/hook-debug.log
 [ -f ".git/MERGE_HEAD" ] || exit 0
 exec "$(dirname "$0")/apply-main-filters"
