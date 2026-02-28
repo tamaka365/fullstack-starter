@@ -1,0 +1,4 @@
+#!/bin/sh
+# Fires during conflict-resolution commits (pre-merge-commit doesn't run then).
+[ -f ".git/MERGE_HEAD" ] || exit 0
+exec "$(dirname "$0")/apply-main-filters"

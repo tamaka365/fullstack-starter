@@ -1,0 +1,10 @@
+#!/bin/sh
+# Fires during clean (auto-resolved) merges.
+# GIT_REFLOG_ACTION is "merge <ref>" and GITHEAD_<sha>=<ref> provides the merged SHA.
+case "$GIT_REFLOG_ACTION" in
+  merge\ *) ;;
+  *) exit 0 ;;
+esac
+MERGE_HEAD=$(env | sed -n 's/^GITHEAD_\([a-f0-9]*\)=.*/\1/p' | head -1)
+[ -n "$MERGE_HEAD" ] || exit 0
+exec "$(dirname "$0")/apply-main-filters" "$MERGE_HEAD"
