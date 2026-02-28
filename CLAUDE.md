@@ -19,7 +19,7 @@ and in projects that clone from it.
 - `main` — clean template branch, future projects clone from here
 
 Develop on `dev`. When ready to publish, switch to `main` and run `git merge dev` — the
-`pre-commit` hook will automatically filter out dev-only content.
+`pre-merge-commit` hook will automatically filter out dev-only content.
 
 ## Important: After Cloning
 
@@ -30,7 +30,7 @@ pnpm install
 ```
 
 This sets `core.hooksPath` to `.githooks` and configures `branch.main.mergeoptions = --no-ff`,
-ensuring merges into `main` always produce a merge commit (required for `post-merge` to fire).
+ensuring merges into `main` always produce a merge commit (required for hooks to fire).
 
 ## Dev-Only Content (excluded from main)
 
