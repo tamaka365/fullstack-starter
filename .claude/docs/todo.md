@@ -8,7 +8,7 @@
 
 初始化 git 仓库，配置分支策略与 git hook，确保合并到 `main` 时自动过滤开发专用内容。
 
-详细文档：[docs/v0.0.1-repo-setup.md](./v0.0.1-repo-setup.md)
+详细文档：[v0.0.1-repo-setup.md](./v0.0.1-repo-setup.md)
 
 ---
 
@@ -16,7 +16,7 @@
 
 初始化 pnpm monorepo，配置工作空间，创建 `packages/` 下的共享库（ui、hooks、utils）。
 
-详细文档：[docs/v0.1.0-monorepo-base.md](./v0.1.0-monorepo-base.md)
+详细文档：[v0.1.0-monorepo-base.md](./v0.1.0-monorepo-base.md)
 
 ---
 
@@ -24,7 +24,7 @@
 
 创建 `templates/` 目录，包含 Next.js 前端模板和 NestJS 后端模板。
 
-详细文档：[docs/v0.2.0-templates.md](./v0.2.0-templates.md)
+详细文档：[v0.2.0-templates.md](./v0.2.0-templates.md)
 
 ---
 
@@ -32,4 +32,4 @@
 
 实现交互式 `pnpm run create` 命令，从模板生成 `frontend/` 和 `backend/` 项目并自动安装依赖。
 
-详细文档：[docs/v0.3.0-create-command.md](./v0.3.0-create-command.md)
+详细文档：[v0.3.0-create-command.md](./v0.3.0-create-command.md)

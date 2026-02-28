@@ -14,18 +14,28 @@ fi
 
 echo "Applying main branch filters..."
 
-# Replace .gitignore with the main version (without frontend/ backend/)
+# 1. Replace .gitignore with the main version (without frontend/ backend/)
 cp .gitignore.main .gitignore
-
-# Stage removals and updated .gitignore
-git rm -r --cached docs/ > /dev/null 2>&1 || true
 git rm --cached .gitignore.main > /dev/null 2>&1
+rm -f .gitignore.main
 git add .gitignore
 
-# Remove from working tree
-rm -rf docs/
-rm -f .gitignore.main
+# 2. Replace CLAUDE.md with the template version
+cp CLAUDE.main.md CLAUDE.md
+git rm --cached CLAUDE.main.md > /dev/null 2>&1
+rm -f CLAUDE.main.md
+git add CLAUDE.md
+
+# 3. Remove dev-only .claude/docs/, install template .claude/docs.main/ as .claude/docs/
+git rm -r --cached .claude/docs/ > /dev/null 2>&1 || true
+rm -rf .claude/docs/
+if [ -d ".claude/docs.main" ]; then
+  cp -r .claude/docs.main .claude/docs
+  git rm -r --cached .claude/docs.main > /dev/null 2>&1
+  rm -rf .claude/docs.main
+  git add .claude/docs/
+fi
 
 git commit -m "chore: apply main branch filters"
 
-echo "Done: docs/ removed, .gitignore.main applied as .gitignore"
+echo "Done"
