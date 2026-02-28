@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# Only apply when merging into main
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+if [ "$CURRENT_BRANCH" != "main" ]; then
+  exit 0
+fi
+
+# .gitignore.main acts as sentinel: only present when merging from starter's dev branch.
+# Future projects that clone main won't have this file, so the hook exits early for them.
+if ! git diff --cached --name-only | grep -q "^\.gitignore\.main$"; then
+  exit 0
+fi
+
+echo "Applying main branch filters..."
+
+# Remove docs/ if present in this merge
+if git diff --cached --name-only | grep -q "^docs/"; then
+  git rm -r --cached docs/ > /dev/null 2>&1
+  rm -rf docs/
+fi
+
+# Replace .gitignore with the main version (without frontend/ backend/)
+cp .gitignore.main .gitignore
+git add .gitignore
+git rm --cached .gitignore.main > /dev/null 2>&1
+rm -f .gitignore.main
+
+echo "Done: docs/ removed, .gitignore.main applied as .gitignore"

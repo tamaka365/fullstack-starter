@@ -1,0 +1,11 @@
+{
+  "name": "fullstack-starter",
+  "private": true,
+  "scripts": {
+    "prepare": "git config core.hooksPath .githooks"
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  }
+}
