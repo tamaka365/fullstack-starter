@@ -1,43 +1,42 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+本文件为 Claude Code（claude.ai/code）在此仓库中工作时提供指引。
 
-## This Is the Starter Dev Branch
+## 这是 Starter 的开发分支
 
-This is the development branch of the fullstack-starter project. For architecture, commands, and
-monorepo structure, see `CLAUDE.main.md` — that file becomes `CLAUDE.md` on the `main` branch
-and in projects that clone from it.
+这是 fullstack-starter 项目的开发分支。架构说明、常用命令和 monorepo 结构请参阅
+`CLAUDE.main.md` —— 该文件在 `main` 分支及从其 clone 的项目中会成为 `CLAUDE.md`。
 
-## Tooling
+## 工具链
 
-- Package manager: **pnpm**
-- Styling: **vanilla-extract**
+- 包管理器：**pnpm**
+- 样式方案：**vanilla-extract**
 
-## Branch Strategy
+## 分支策略
 
-- `dev` — daily development, contains all content including `.claude/docs/`
-- `main` — clean template branch, future projects clone from here
+- `dev` —— 日常开发，包含所有内容（含 `.claude/docs/`）
+- `main` —— 干净的模板分支，将来的新项目从此 clone
 
-Develop on `dev`. When ready to publish, switch to `main` and run `git merge dev` — the
-`pre-merge-commit` hook will automatically filter out dev-only content.
+在 `dev` 上开发，发布时切到 `main` 执行 `git merge dev` ——
+`pre-merge-commit` hook 会自动过滤 dev 专用内容。
 
-## Important: After Cloning
+## 重要：clone 后必做
 
-Run `pnpm install` to activate git hooks via the `prepare` script:
+运行 `pnpm install` 以通过 `prepare` 脚本激活 git hooks：
 
 ```bash
 pnpm install
 ```
 
-This sets `core.hooksPath` to `.githooks` and configures `branch.main.mergeoptions = --no-ff`,
-ensuring merges into `main` always produce a merge commit (required for hooks to fire).
+这会将 `core.hooksPath` 指向 `.githooks`，并配置 `branch.main.mergeoptions = --no-ff`，
+确保合并到 `main` 时始终产生 merge commit（hooks 依赖此行为触发）。
 
-## Dev-Only Content (excluded from main)
+## Dev 专用内容（不会出现在 main）
 
-| Path | Description |
-|------|-------------|
-| `.claude/docs/` | Internal development docs (todo, version changelogs) |
-| `CLAUDE.md` | This file — dev-specific guidance |
-| `.gitignore.main` | Template .gitignore for main (also acts as sentinel for hook) |
-| `CLAUDE.main.md` | Template CLAUDE.md for main (replaces this file after merge) |
-| `.claude/docs.main/` | Template .claude/docs/ for main |
+| 路径 | 说明 |
+|------|------|
+| `.claude/docs/` | 内部开发文档（todo、版本日志） |
+| `CLAUDE.md` | 本文件 —— dev 专用指引 |
+| `.gitignore.main` | main 的 .gitignore 模板（同时作为 hook 哨兵文件） |
+| `CLAUDE.main.md` | main 的 CLAUDE.md 模板（merge 后替换本文件） |
+| `.claude/docs.main/` | main 的 .claude/docs/ 模板 |
