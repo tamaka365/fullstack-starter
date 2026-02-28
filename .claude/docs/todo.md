@@ -11,3 +11,13 @@
 详细文档：[.claude/docs/v0.1.0.md](.claude/docs/v0.1.0.md)
 
 状态：**已完成**
+
+---
+
+## v0.2.0 — templatize 命令
+
+将 `frontend/` 或 `backend/` 开发完的项目保存为可复用模板。
+
+详细文档：[.claude/docs/v0.2.0.md](.claude/docs/v0.2.0.md)
+
+状态：**已完成**
