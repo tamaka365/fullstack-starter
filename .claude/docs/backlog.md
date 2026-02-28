@@ -4,16 +4,6 @@
 
 ---
 
-## Monorepo 基础搭建
-
-- 配置根目录 `package.json`：workspace 脚本（create、templatize、dev、dev fe/be、start、start fe/be、build、build fe/be、typecheck）、devDependencies（@inquirer/prompts、typescript）、engines（node >=20，pnpm >=9）
-- 创建 `pnpm-workspace.yaml`：声明 packages/*、templates/*、frontend、backend
-- 创建 `@starter/ui`：组件库，基于 vanilla-extract
-- 创建 `@starter/hooks`：
-- 创建 `@starter/utils`：
-
----
-
 ## 项目模板
 
 - 模板支持多个，存放于 `templates/<name>/`，create 命令动态扫描可用模板
