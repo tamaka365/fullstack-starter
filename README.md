@@ -61,5 +61,8 @@ pnpm dev be     # 仅启动后端
 pnpm start      # 同时启动前后端（生产模式）
 pnpm start fe   # 仅启动前端
 pnpm start be   # 仅启动后端
+pnpm build      # 同时构建前后端
+pnpm build fe   # 仅构建前端
+pnpm build be   # 仅构建后端
 pnpm typecheck  # 对所有工作空间进行类型检查
 ```

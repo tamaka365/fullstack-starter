@@ -6,7 +6,7 @@
 
 ## Monorepo 基础搭建
 
-- 配置根目录 `package.json`：workspace 脚本（create、dev、dev fe/be、start、start fe/be、typecheck）、devDependencies（@inquirer/prompts、typescript）、engines（node >=20，pnpm >=9）
+- 配置根目录 `package.json`：workspace 脚本（create、dev、dev fe/be、start、start fe/be、build、build fe/be、typecheck）、devDependencies（@inquirer/prompts、typescript）、engines（node >=20，pnpm >=9）
 - 创建 `pnpm-workspace.yaml`：声明 packages/*、templates/*、frontend、backend
 - 创建 `tsconfig.base.json`：供 packages/ 各包继承，target ES2022、strict、moduleResolution bundler、jsx react-jsx
 - 创建 `@starter/ui`：Button 组件，基于 vanilla-extract，支持 variant（primary / secondary / ghost）和 size（sm / md / lg）
