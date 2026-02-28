@@ -1,12 +1,19 @@
 #!/bin/sh
-# Shared filtering logic called by pre-merge-commit (clean merges)
-# and pre-commit (conflict-resolution commits).
-# Reads all content from the MERGE_HEAD tree, never from the working tree.
+# Shared filtering logic.
+# Called by pre-merge-commit (clean merges) with MERGE_HEAD SHA as $1,
+# or by pre-commit (conflict-resolution commits) which reads .git/MERGE_HEAD.
 
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 [ "$CURRENT_BRANCH" = "main" ] || exit 0
 
-MERGE_HEAD=$(cat .git/MERGE_HEAD)
+if [ -n "$1" ]; then
+  MERGE_HEAD="$1"
+elif [ -f ".git/MERGE_HEAD" ]; then
+  MERGE_HEAD=$(cat .git/MERGE_HEAD)
+else
+  exit 0
+fi
+
 git cat-file -e "$MERGE_HEAD:.gitignore.main" 2>/dev/null || exit 0
 
 echo "Applying main branch filters..."
@@ -26,7 +33,8 @@ fi
 git rm -r --cached .claude/docs/ > /dev/null 2>&1 || true
 rm -rf .claude/docs/
 
-if [ -d ".claude/docs.main" ]; then
+if git cat-file -e "$MERGE_HEAD:.claude/docs.main/todo.md" 2>/dev/null; then
+  git checkout "$MERGE_HEAD" -- .claude/docs.main
   cp -r .claude/docs.main .claude/docs
   git rm -r --cached .claude/docs.main > /dev/null 2>&1 || true
   rm -rf .claude/docs.main

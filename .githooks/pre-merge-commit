@@ -1,11 +1,10 @@
 #!/bin/sh
 # Fires during clean (auto-resolved) merges.
-echo "[pre-merge-commit] fired" >> /tmp/hook-debug.log
-echo "MERGE_HEAD: $(ls .git/MERGE_HEAD 2>&1)" >> /tmp/hook-debug.log
-echo "MERGE_MSG: $(ls .git/MERGE_MSG 2>&1)" >> /tmp/hook-debug.log
-echo "GIT_REFLOG_ACTION: $GIT_REFLOG_ACTION" >> /tmp/hook-debug.log
-echo "GIT_MERGE_HEAD: $GIT_MERGE_HEAD" >> /tmp/hook-debug.log
-env | grep GIT >> /tmp/hook-debug.log
-echo "---" >> /tmp/hook-debug.log
-[ -f ".git/MERGE_HEAD" ] || exit 0
-exec "$(dirname "$0")/apply-main-filters"
+# GIT_REFLOG_ACTION is "merge <ref>" and GITHEAD_<sha>=<ref> provides the merged SHA.
+case "$GIT_REFLOG_ACTION" in
+  merge\ *) ;;
+  *) exit 0 ;;
+esac
+MERGE_HEAD=$(env | sed -n 's/^GITHEAD_\([a-f0-9]*\)=.*/\1/p' | head -1)
+[ -n "$MERGE_HEAD" ] || exit 0
+exec "$(dirname "$0")/apply-main-filters" "$MERGE_HEAD"
