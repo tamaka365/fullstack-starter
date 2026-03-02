@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.7.0 — MenuList 组件（2026-03-02）
+
+- `packages/ui/src/menu-list/types.ts`：`MenuItemData` / `MenuGroupData` / `MenuListItem` 数据类型，`isMenuGroup` type guard（双重字段检查防误判），`RenderItemMeta`，`MenuListProps`，含完整 JSDoc
+- `packages/ui/src/menu-list/MenuList.css.ts`：list / groupLabel / item / itemActive / itemDisabled / expandIcon 样式，`group` 复用 `list` class，`--menu-level` CSS variable 控制嵌套缩进，`:focus-visible` 焦点轮廓
+- `packages/ui/src/menu-list/MenuList.tsx`：`MenuList` 组件，`renderItem` slot 多态渲染，`activeKey` 激活态，受控/非受控展开状态（`useMemo` 稳定引用），`handleKeyDown` / `handleExpandClick` 提升为稳定 `useCallback`（通过 `data-*` 传递条目信息，所有条目共享同一函数引用），展开 toggle 独立于条目点击，键盘 Enter/Space 按叶子/父节点分支处理，group key 使用 `` `${label ?? 'group'}-${index}` ``，完整 ARIA 语义，含完整 JSDoc
+- `packages/ui/src/index.ts`：导出 `MenuList` 及全部类型
+- `packages/ui/tsconfig.json`：新增 `lib: ["ES2022", "DOM", "DOM.Iterable"]`
+
+## v0.7.0 — MenuList 组件（2026-03-02）
+
+- `packages/ui/src/menu-list/types.ts`：`MenuItemData` / `MenuGroupData` / `MenuListItem` 数据类型，`isMenuGroup` type guard（双重字段检查），`RenderItemMeta`，`MenuListProps`，含完整 JSDoc
+- `packages/ui/src/menu-list/MenuList.css.ts`：list / group / groupLabel / item / itemActive / itemDisabled / expandIcon 样式，`--menu-level` CSS variable 控制嵌套缩进，`:focus-visible` 焦点轮廓
+- `packages/ui/src/menu-list/MenuList.tsx`：`MenuList` 组件，`renderItem` slot 多态渲染，`activeKey` 激活态，受控/非受控展开状态（`useMemo` 稳定引用），展开 toggle 独立于条目点击（expand icon 改为 `<button>`），键盘 Enter/Space 按叶子/父节点分支处理，消除 group key 的 `cloneElement`，完整 ARIA 语义，含完整 JSDoc
+- `packages/ui/src/index.ts`：导出 `MenuList` 及全部类型
+- `packages/ui/tsconfig.json`：新增 `lib: ["ES2022", "DOM", "DOM.Iterable"]`
+
 ## v0.6.0 — Layout 组件（2026-03-02）
 
 - `packages/ui/src/layout/Layout.css.ts`：vanilla-extract 样式，`globalStyle` 初始化 `html`/`body` margin/padding，root `height: 100vh`，`scrollArea` / `bounded` / `rootScrollable` 控制滚动容器，CSS sticky 仅用于 `stickySidebar=true + sidebarFull=false` 场景

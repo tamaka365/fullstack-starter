@@ -60,4 +60,14 @@
 
 详细文档：[.claude/docs/v0.6.0.md](.claude/docs/v0.6.0.md)
 
+状态：**已完成**
+
+---
+
+## v0.7.0 — MenuList 组件
+
+在 `packages/ui` 中实现 `MenuList` 原始组件，作为 Menu、SidebarNav 等上层组件的共用基础。
+
+详细文档：[.claude/docs/v0.7.0.md](.claude/docs/v0.7.0.md)
+
 状态：**进行中**
