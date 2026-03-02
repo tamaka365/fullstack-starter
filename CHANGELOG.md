@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.4.0 — CLI 增强（2026-03-02）
+
+- `scripts/workspace.mjs`：提取 `listUserProjects()`、`removeFromWorkspace()`、`renameInWorkspace()` 公共函数，读取 `pnpm-workspace.yaml` 并排除 glob 条目
+- `scripts/remove.mjs`：`pnpm remove` 命令，多选用户项目，二次确认（默认 N），删除目录并同步更新 workspace
+- `scripts/rename.mjs`：`pnpm rename` 命令，选择项目并输入新名称，重命名目录、更新 `package.json` name 字段、同步更新 workspace
+- `scripts/templatize.mjs`：来源改为从 workspace 用户项目中选择；存储位置改为先选/新建类型目录，再选/新建模板名称
+- `scripts/run.mjs`：`pnpm dev/build/start` 共用脚本，交互式选择具体项目或「全部（并行）」执行
+- `package.json`：新增 `remove`、`rename` 脚本；`dev`/`build`/`start` 改为调用 `run.mjs`；移除 `dev:fe`、`dev:be`、`build:fe`、`build:be`、`start:fe`、`start:be`
+
 ## v0.3.0 — new 命令（2026-02-28）
 
 - `scripts/new.mjs`：从 `templates/` 选择模板，在根目录创建新项目

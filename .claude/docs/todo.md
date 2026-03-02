@@ -31,3 +31,13 @@
 详细文档：[.claude/docs/v0.3.0.md](.claude/docs/v0.3.0.md)
 
 状态：**已完成**
+
+---
+
+## v0.4.0 — CLI 增强
+
+新增 `remove` / `rename` 命令；优化 `templatize` 来源与存储交互；重设计 `dev` / `build` / `start` 为交互式，移除 `dev:fe` 等快捷脚本。
+
+详细文档：[.claude/docs/v0.4.0.md](.claude/docs/v0.4.0.md)
+
+状态：**已完成**
