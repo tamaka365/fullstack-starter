@@ -1,3 +1,5 @@
+'use client'
+
 import { clsx } from 'clsx'
 import { Popover } from '../popover/Popover'
 import type { TriggerProps } from '../popover/types'

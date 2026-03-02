@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.10.0 — ui-example docs 路由（2026-03-02）
+
+- `packages/ui/src/sidebar/Sidebar.tsx`：加 `'use client'`，新增 `style` / `className` prop
+- `packages/ui/src/sidebar/SidebarNav.tsx`：加 `'use client'`
+- `packages/ui/src/popover/Popover.tsx`：加 `'use client'`
+- `packages/ui/src/menu-list/MenuList.tsx`：加 `'use client'`
+- `packages/ui/src/sidebar/types.ts`：`SidebarProps` 新增 `style?: CSSProperties`、`className?: string`
+- `ui-example/next.config.ts`：集成 `@next/mdx`，`pageExtensions` 加入 `mdx`
+- `ui-example/mdx-components.tsx`：MDX 组件注册入口
+- `ui-example/src/app/(docs)/layout.tsx`：docs 路由组布局，使用 `UIProvider` + `Layout` + `DocsSidebar`
+- `ui-example/src/app/(docs)/docs-sidebar.tsx`：客户端侧边栏，`usePathname` 驱动 `activeKey`，`useSidebar` 驱动折叠按钮
+- `ui-example/src/app/(docs)/layout/page.mdx` + `demo.tsx`：Layout 组件文档与示例
+- `ui-example/src/app/(docs)/menu-list/page.mdx` + `demo.tsx`：MenuList 组件文档与示例
+- `ui-example/src/app/(docs)/popover/page.mdx` + `demo.tsx`：Popover 组件文档与示例
+- `ui-example/src/app/(docs)/sidebar/page.mdx` + `demo.tsx`：Sidebar 组件文档与示例
+
 ## v0.9.0 — Sidebar + SidebarNav 组件（2026-03-02）
 
 - `packages/ui/src/sidebar/types.ts`：`SidebarContextValue`、`SidebarProps`、`SidebarNavItemData`、`SidebarNavProps` 类型定义，含完整 JSDoc

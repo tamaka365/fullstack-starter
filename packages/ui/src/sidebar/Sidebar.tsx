@@ -1,3 +1,6 @@
+'use client'
+
+import { clsx } from 'clsx'
 import { createContext, useCallback, useContext, useState } from 'react'
 import * as styles from './Sidebar.css'
 import type { SidebarContextValue, SidebarProps } from './types'
@@ -42,6 +45,8 @@ export function Sidebar({
   defaultCollapsed = false,
   expandedWidth = 240,
   collapsedWidth = 56,
+  style,
+  className,
 }: SidebarProps) {
   const isControlled = collapsed !== undefined
   const [internalCollapsed, setInternalCollapsed] = useState(defaultCollapsed)
@@ -58,8 +63,8 @@ export function Sidebar({
   return (
     <SidebarContext.Provider value={{ collapsed: isCollapsed, toggle }}>
       <div
-        className={styles.sidebar}
-        style={{ ['--sidebar-width' as string]: `${width}px` }}
+        className={clsx(styles.sidebar, className)}
+        style={{ ['--sidebar-width' as string]: `${width}px`, ...style }}
       >
         {header && <div className={styles.sidebarHeader}>{header}</div>}
         <div className={styles.scrollArea}>{children}</div>

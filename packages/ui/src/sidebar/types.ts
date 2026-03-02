@@ -48,6 +48,10 @@ export interface SidebarProps {
    * @default 56
    */
   collapsedWidth?: number
+  /** 传给根元素的内联样式 */
+  style?: React.CSSProperties
+  /** 传给根元素的 className */
+  className?: string
 }
 
 // ─── SidebarNav ──────────────���────────────────────────────────────────────────
