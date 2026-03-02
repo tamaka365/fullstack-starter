@@ -32,35 +32,17 @@ function isExternalHref(href: string): boolean {
 interface NavLinkProps {
   item: SidebarNavItemData
   linkComponent: React.ElementType
-  isActive: boolean
-  level: number
 }
 
 /** 单条导航链接，处理内链/外链逻辑 */
-function NavLink({ item, linkComponent: LinkComp, isActive, level }: NavLinkProps) {
+function NavLink({ item, linkComponent: LinkComp }: NavLinkProps) {
   const isExternal = isExternalHref(item.href)
   const Comp = isExternal ? 'a' : LinkComp
   const extraProps = isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {}
 
   return (
-    <Comp
-      href={item.href}
-      {...extraProps}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 8,
-        width: '100%',
-        padding: `6px ${8 + level * 12}px`,
-        textDecoration: 'none',
-        fontSize: 14,
-        fontWeight: isActive ? 600 : 400,
-        color: isActive ? 'var(--sidebar-nav-active-color, #2563eb)' : 'inherit',
-        cursor: item.disabled ? 'not-allowed' : 'pointer',
-        opacity: item.disabled ? 0.5 : 1,
-      }}
-    >
-      {item.icon && <span style={{ fontSize: 16, flexShrink: 0 }}>{item.icon}</span>}
+    <Comp href={item.href} {...extraProps}>
+      {item.icon && <span>{item.icon}</span>}
       <span>{item.label}</span>
     </Comp>
   )
@@ -122,8 +104,6 @@ export function SidebarNav({
         <NavLink
           item={navItem}
           linkComponent={linkComponent}
-          isActive={meta.isActive}
-          level={meta.level}
         />
       )
     }
@@ -201,8 +181,6 @@ export function SidebarNav({
                     <NavLink
                       item={navItem}
                       linkComponent={linkComponent}
-                      isActive={meta.isActive}
-                      level={meta.level}
                     />
                   )
                 }}
