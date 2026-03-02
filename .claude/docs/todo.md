@@ -41,3 +41,13 @@
 详细文档：[.claude/docs/v0.4.0.md](.claude/docs/v0.4.0.md)
 
 状态：**已完成**
+
+---
+
+## v0.5.0 — contribute 命令
+
+从子项目将 `packages/` 或 `templates/` 的改动贡献回 `cli-release` 分支并创建 PR。
+
+详细文档：[.claude/docs/v0.5.0.md](.claude/docs/v0.5.0.md)
+
+状态：**进行中**

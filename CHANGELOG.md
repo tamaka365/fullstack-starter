@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.5.0 — contribute 命令（2026-03-02）
+
+- `scripts/contribute.mjs`：`pnpm contribute` 命令，从子项目将 `packages/` 或 `templates/` 的改动贡献回 `cli-release` 分支
+  - 首次运行询问 starter 仓库地址并记录到 `.starter-remote`
+  - 自动配置 `upstream` remote（幂等）并 fetch `cli-release`
+  - 多选要贡献的 `packages/<name>` 或 `templates/<type>/<name>` 目录
+  - 用 `git worktree` 创建临时分支，复制选中目录，检测变更后 commit
+  - push 到 upstream，通过 `gh pr create` 创建 PR（非 GitHub 时打印手动链接）
+  - 完成后自动清理 worktree 和临时分支
+- `.gitignore.main`：追加 `.starter-remote`（子项目本地配置，不应提交）
+- `package.json`：新增 `contribute` 脚本
+
 ## v0.4.0 — CLI 增强（2026-03-02）
 
 - `scripts/workspace.mjs`：提取 `listUserProjects()`、`removeFromWorkspace()`、`renameInWorkspace()` 公共函数，读取 `pnpm-workspace.yaml` 并排除 glob 条目
