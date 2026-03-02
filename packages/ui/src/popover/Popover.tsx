@@ -14,11 +14,8 @@ import {
   useTransitionStyles,
 } from '@floating-ui/react'
 import { useCallback, useState } from 'react'
-import type { PopoverProps, PopoverTrigger } from './types'
+import type { PopoverProps } from './types'
 import { usePortalRoot } from '../ui-provider/UIProvider'
-
-/** 稳定的默认触发方式引用，避免每次渲染创建新数组 */
-const DEFAULT_TRIGGERS: PopoverTrigger[] = ['hover']
 
 /**
  * Popover — 通用浮层原语
@@ -49,7 +46,7 @@ export function Popover({
   offset = 8,
   open: controlledOpen,
   onOpenChange,
-  triggers = DEFAULT_TRIGGERS,
+  triggers = 'hover',
   openDelay = 100,
   closeDelay = 0,
 }: PopoverProps) {
@@ -75,10 +72,10 @@ export function Popover({
     whileElementsMounted: autoUpdate,
   })
 
-  const hasHover = triggers.includes('hover')
-  const hasClick = triggers.includes('click')
-  const hasFocus = triggers.includes('focus')
-  const hasDismiss = hasClick || hasFocus
+  const hasHover = triggers === 'hover'
+  const hasClick = triggers === 'click'
+  const hasFocus = triggers === 'focus'
+  const hasDismiss = !hasHover
 
   const hover = useHover(context, {
     enabled: hasHover,

@@ -49,10 +49,10 @@ export interface PopoverProps {
   /** 受控时的状态变更回调 */
   onOpenChange?: (open: boolean) => void
   /**
-   * 触发方式，可多选
-   * @default ['hover']
+   * 触发方式，三选一
+   * @default 'hover'
    */
-  triggers?: PopoverTrigger[]
+  triggers?: PopoverTrigger
   /**
    * hover 显示延迟（ms），防止鼠标掠过误触；仅 triggers 含 'hover' 时生效
    * @default 100
