@@ -15,11 +15,12 @@
 
 ## 分支策略
 
-- `dev` —— 日常开发，包含所有内容（含 `.claude/docs/`）
+- `cli-release` —— 日常开发，包含所有内容（含 `.claude/docs/`）
 - `main` —— 干净的模板分支，将来的新项目从此 clone
+- `dev` —— 预留给 clone 后创建的具体项目使用
 
-在 `dev` 上开发，发布时切到 `main` 执行 `git merge dev` ——
-`pre-merge-commit` hook 会自动过滤 dev 专用内容。
+在 `cli-release` 上开发，发布时切到 `main` 执行 `git merge cli-release` ——
+`pre-merge-commit` hook 会自动过滤 cli-release 专用内容。
 
 ## 重要：clone 后必做
 
@@ -37,7 +38,7 @@ pnpm install
 | 路径                 | 说明                                              |
 | -------------------- | ------------------------------------------------- |
 | `.claude/docs/`      | 内部开发文档（todo、版本日志）                    |
-| `CLAUDE.md`          | 本文件 —— dev 专用指引                            |
+| `CLAUDE.md`          | 本文件 —— cli-release 专用指引               |
 | `.gitignore.main`    | main 的 .gitignore 模板（同时作为 hook 哨兵文件） |
 | `CLAUDE.main.md`     | main 的 CLAUDE.md 模板（merge 后替换本文件）      |
 | `.claude/docs.main/` | main 的 .claude/docs/ 模板                        |

@@ -10,6 +10,12 @@
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
+    "clsx": "^2.1.1",
+    "react": "19.2.3",
     "typescript": "^5.8.2"
+  },
+  "peerDependencies": {
+    "clsx": ">=2",
+    "react": ">=18"
   }
 }

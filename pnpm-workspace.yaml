@@ -1,4 +1,4 @@
 packages:
   - 'packages/*'
   - 'templates/*'
-  - 'web-app'
+  - 'frontend'

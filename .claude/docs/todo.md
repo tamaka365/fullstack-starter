@@ -50,4 +50,14 @@
 
 详细文档：[.claude/docs/v0.5.0.md](.claude/docs/v0.5.0.md)
 
+状态：**已完成**
+
+---
+
+## v0.6.0 — Layout 组件
+
+在 `packages/ui` 中实现 `Layout` 组件，支持 7 种经典布局模式，vanilla-extract 样式。
+
+详细文档：[.claude/docs/v0.6.0.md](.claude/docs/v0.6.0.md)
+
 状态：**进行中**

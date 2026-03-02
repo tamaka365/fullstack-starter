@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.6.0 — Layout 组件（2026-03-02）
+
+- `packages/ui/src/layout/Layout.css.ts`：vanilla-extract 样式，`globalStyle` 初始化 `html`/`body` margin/padding，root `height: 100vh`，`scrollArea` / `bounded` / `rootScrollable` 控制滚动容器，CSS sticky 仅用于 `stickySidebar=true + sidebarFull=false` 场景
+- `packages/ui/src/layout/Layout.tsx`：`Layout` 组件，`stickyHeader` / `stickySidebar` 控制固定与滚动区域，`sidebarFull` 控制 sidebar 与 header 的位置关系，`stickySidebar` 默认与 `stickyHeader` 同步，含完整 JSDoc
+- `packages/ui/src/index.ts`：导出 `Layout`、`LayoutProps`
+- `packages/ui/package.json`：新增 `peerDependencies: { react: ">=18", clsx: ">=2" }`
+
 ## v0.5.0 — contribute 命令（2026-03-02）
 
 - `scripts/contribute.mjs`：`pnpm contribute` 命令，从子项目将 `packages/` 或 `templates/` 的改动贡献回 `cli-release` 分支
