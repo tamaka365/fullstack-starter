@@ -31,38 +31,6 @@ function listTemplates(type) {
     .map(e => e.name)
 }
 
-function readPkgName(pkgPath) {
-  if (!fs.existsSync(pkgPath)) return null
-  return JSON.parse(fs.readFileSync(pkgPath, 'utf-8')).name ?? null
-}
-
-function dedupeWithRoot(projectPkgPath) {
-  const rootPkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf-8'))
-  const rootPkgs = new Set([
-    ...Object.keys(rootPkg.dependencies ?? {}),
-    ...Object.keys(rootPkg.devDependencies ?? {}),
-  ])
-
-  const pkg = JSON.parse(fs.readFileSync(projectPkgPath, 'utf-8'))
-  let changed = false
-
-  for (const section of ['dependencies', 'devDependencies']) {
-    if (!pkg[section]) continue
-    for (const name of Object.keys(pkg[section])) {
-      if (rootPkgs.has(name)) {
-        delete pkg[section][name]
-        changed = true
-      }
-    }
-    if (Object.keys(pkg[section]).length === 0) delete pkg[section]
-  }
-
-  if (changed) {
-    fs.writeFileSync(projectPkgPath, JSON.stringify(pkg, null, 2) + '\n')
-  }
-  return changed
-}
-
 function addToWorkspace(name) {
   const wsPath = path.join(ROOT, 'pnpm-workspace.yaml')
   const content = fs.readFileSync(wsPath, 'utf-8')
@@ -122,20 +90,12 @@ if (fs.existsSync(projectPkgPath)) {
 }
 
 console.log(`✓ 已创建 ${projectName}/`)
-
-// --- 更新 pnpm-workspace.yaml ---
 addToWorkspace(projectName)
 console.log('✓ 已更新 pnpm-workspace.yaml')
 
 // --- 更新 .gitignore ---
 addToGitignore(projectName)
 console.log('✓ 已更新 .gitignore')
-
-// --- 依赖去重 ---
-if (fs.existsSync(projectPkgPath)) {
-  const changed = dedupeWithRoot(projectPkgPath)
-  if (changed) console.log('✓ 已从项目 package.json 移除根目录已有的依赖')
-}
 
 // --- 安装 ---
 console.log('正在安装依赖...')
