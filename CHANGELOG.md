@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.8.0 — Popover 组件（2026-03-02）
+
+- `packages/ui/src/ui-provider/UIProvider.tsx`：`UIProvider` 组件，渲染两个相邻 div（appRoot + portalRoot），通过 `PortalContext` 向下透传 portalRoot 引用；`usePortalRoot` hook 供浮层组件消费；添加 `'use client'` 声明
+- `packages/ui/src/ui-provider/UIProvider.css.ts`：appRoot / portalRoot 样式（position relative），portalRoot 作为后兄弟节点天然在 appRoot 上层，无需 z-index
+- `packages/ui/src/popover/types.ts`：`PopoverTrigger`（'hover' | 'click' | 'focus'）、`TriggerProps`（含上游类型限制说明）、`PopoverProps`（`children` 改为 `trigger` render prop，新增 `triggers` 多触发方式）
+- `packages/ui/src/popover/Popover.tsx`：`trigger` render prop 消除 `cloneElement`，`useHover` / `useClick` / `useFocus` 按 `triggers` 按需启用，`safePolygon` 仅在 hover 启用时调用，click/focus 自动启用 `useDismiss`，`DEFAULT_TRIGGERS` 模块级常量避免默认值引用不稳定，`useTransitionStyles` 方向感知动画，优先挂载到 UIProvider portalRoot，降级为 document.body
+- `packages/ui/src/popover/Popover.css.ts`：删除（z-index 由 DOM 结构保证，无需 CSS）
+- `packages/ui/src/index.ts`：导出 `UIProvider`、`PopoverTrigger`、`TriggerProps`
+- `ui-example/src/app/popover/page.tsx`：演示页面更新，覆盖 hover / click / hover+focus / placement / 受控 / MenuList 组合六个场景
+
 ## v0.7.0 — MenuList 组件（2026-03-02）
 
 - `packages/ui/src/menu-list/types.ts`：`MenuItemData` / `MenuGroupData` / `MenuListItem` 数据类型，`isMenuGroup` type guard（双重字段检查防误判），`RenderItemMeta`，`MenuListProps`，含完整 JSDoc

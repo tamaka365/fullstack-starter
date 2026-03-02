@@ -70,4 +70,14 @@
 
 详细文档：[.claude/docs/v0.7.0.md](.claude/docs/v0.7.0.md)
 
+状态：**已完成**
+
+---
+
+## v0.8.0 — Popover 组件
+
+在 `packages/ui` 中实现 `Popover` 通用浮层原语，基于 `@floating-ui/react`，hover 触发，portal 渲染，CSS 动画，受控/非受控 open 状态。
+
+详细文档：[.claude/docs/v0.8.0.md](.claude/docs/v0.8.0.md)
+
 状态：**进行中**

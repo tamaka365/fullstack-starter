@@ -1,3 +1,8 @@
+export { UIProvider } from './ui-provider/UIProvider'
+
+export { Popover } from './popover/Popover'
+export type { PopoverProps, PopoverTrigger, TriggerProps, Placement } from './popover/types'
+
 export { Layout } from './layout/Layout'
 export type { LayoutProps } from './layout/Layout'
 
