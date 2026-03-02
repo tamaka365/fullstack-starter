@@ -41,7 +41,7 @@ function NavLink({ item, linkComponent: LinkComp }: NavLinkProps) {
   const extraProps = isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {}
 
   return (
-    <Comp href={item.href} {...extraProps}>
+    <Comp href={item.href} {...extraProps} className={styles.navLink}>
       {item.icon && <span>{item.icon}</span>}
       <span>{item.label}</span>
     </Comp>

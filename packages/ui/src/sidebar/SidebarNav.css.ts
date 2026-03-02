@@ -4,7 +4,13 @@ import { style } from '@vanilla-extract/css'
 export const nav = style({
   display: 'flex',
   flexDirection: 'column',
-  padding: '4px 0',
+})
+
+/** 展开态导航链接 reset（消除 <a> 浏览器默认样式） */
+export const navLink = style({
+  color: 'inherit',
+  textDecoration: 'none',
+  display: 'block',
 })
 
 /** 折叠态图标列容器 */
