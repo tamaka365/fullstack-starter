@@ -10,10 +10,18 @@ if (projects.length === 0) {
   process.exit(1)
 }
 
-const selected = await checkbox({
+const ALL = '__all__'
+const selected_raw = await checkbox({
   message: '选择要删除的项目',
-  choices: projects.map(v => ({ value: v })),
+  choices: [
+    { name: '全部', value: ALL },
+    ...projects.map(v => ({ value: v })),
+  ],
 })
+
+if (selected_raw.length === 0) process.exit(0)
+
+const selected = selected_raw.includes(ALL) ? projects : selected_raw
 
 if (selected.length === 0) process.exit(0)
 

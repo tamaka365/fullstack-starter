@@ -5,7 +5,7 @@
   "packageManager": "pnpm@10.30.3",
   "scripts": {
     "new": "node scripts/new.mjs",
-    "remove": "node scripts/remove.mjs",
+    "clear": "node scripts/clear.mjs",
     "rename": "node scripts/rename.mjs",
     "templatize": "node scripts/templatize.mjs",
     "contribute": "node scripts/contribute.mjs",
