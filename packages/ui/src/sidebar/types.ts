@@ -56,6 +56,12 @@ export interface SidebarProps {
 
 // ─── SidebarNav ──────────────���────────────────────────────────────────────────
 
+/** 侧边栏导航分组数据结构 */
+export interface SidebarNavGroupData {
+  groupLabel?: string
+  items: SidebarNavItemData[]
+}
+
 /** 侧边栏导航条目数据结构 */
 export interface SidebarNavItemData {
   /** 条目唯一标识，通常与路由 pathname 对应 */
@@ -64,8 +70,8 @@ export interface SidebarNavItemData {
   label: string
   /** 条目图标；折叠态若无 icon 则显示 label 首字符 */
   icon?: React.ReactNode
-  /** 目标路径；外链（http/https 开头）自动降级为原生 `<a target="_blank">` */
-  href: string
+  /** 目标路径；外链（http/https 开头）自动降级为原生 `<a target="_blank">`；有 children 时可省略 */
+  href?: string
   /** 子菜单条目；有子项时父节点不可直接跳转 */
   children?: SidebarNavItemData[]
   /** 是否禁用，禁用时不可交互 */
@@ -85,8 +91,8 @@ export interface SidebarNavItemData {
  * ```
  */
 export interface SidebarNavProps {
-  /** 导航条目数据 */
-  items: SidebarNavItemData[]
+  /** 导航条目数据，可混用 SidebarNavItemData 和 SidebarNavGroupData */
+  items: (SidebarNavItemData | SidebarNavGroupData)[]
   /**
    * 路由 Link 组件（Next.js Link、React Router Link 等）。
    * 外部链接（http/https 开头）自动降级为原生 `<a target="_blank">`，不使用此组件。

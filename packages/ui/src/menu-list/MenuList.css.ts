@@ -41,20 +41,37 @@ export const itemDisabled = style({
   pointerEvents: 'none',
 })
 
+export const icon = style({
+  display: 'flex',
+})
+
+
 export const expandIcon = style({
   marginInlineStart: 'auto',
   flexShrink: 0,
-  fontSize: '0.625rem',
   transition: 'transform 0.2s ease',
-  // reset button defaults
-  appearance: 'none',
-  background: 'none',
-  border: 'none',
-  padding: 0,
-  cursor: 'pointer',
-  color: 'inherit',
+  display: 'flex',
 })
 
 export const expandIconOpen = style({
   transform: 'rotate(90deg)',
+})
+
+export const itemLink = style({
+  flex: 1,
+  display: 'flex',
+  alignItems: 'center',
+  gap: 8,
+  // reset <button> defaults
+  appearance: 'none',
+  background: 'none',
+  border: 'none',
+  padding: 0,
+  margin: 0,
+  font: 'inherit',
+  cursor: 'inherit',
+  textAlign: 'left',
+  // reset <a> defaults
+  color: 'inherit',
+  textDecoration: 'none',
 })

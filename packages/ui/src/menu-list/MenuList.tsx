@@ -1,11 +1,12 @@
 'use client'
 
 import { clsx } from 'clsx'
+import { ChevronRight } from 'lucide-react'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import type React from 'react'
 import * as styles from './MenuList.css'
 import { isMenuGroup } from './types'
-import type { MenuGroupData, MenuItemData, MenuListItem, MenuListProps, RenderItemMeta } from './types'
+import type { MenuGroupData, MenuItemData, MenuListItem, MenuListProps } from './types'
 
 /**
  * MenuList — 菜单列表原始组件
@@ -33,7 +34,8 @@ import type { MenuGroupData, MenuItemData, MenuListItem, MenuListProps, RenderIt
 export function MenuList({
   items,
   activeKey,
-  renderItem,
+  renderAs,
+  getItemProps,
   defaultExpandedKeys,
   expandedKeys: controlledExpandedKeys,
   onExpandedKeysChange,
@@ -102,10 +104,10 @@ export function MenuList({
     [focusAdjacentItem, toggleExpand],
   )
 
-  const handleExpandClick = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation()
-      toggleExpand(e.currentTarget.dataset.itemKey!)
+  const handleItemClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const key = e.currentTarget.dataset.itemKey!
+      toggleExpand(key)
     },
     [toggleExpand],
   )
@@ -114,7 +116,6 @@ export function MenuList({
     const isActive = item.key === activeKey
     const isExpanded = expandedKeys.has(item.key)
     const hasChildren = Boolean(item.children?.length)
-    const meta: RenderItemMeta = { isActive, level }
 
     return (
       <li key={item.key} role="none">
@@ -131,19 +132,30 @@ export function MenuList({
             isActive && styles.itemActive,
             item.disabled && styles.itemDisabled,
           )}
+          onClick={hasChildren ? handleItemClick : undefined}
           onKeyDown={handleKeyDown}
         >
-          {renderItem(item, meta)}
+          {renderAs && !hasChildren ? (() => {
+            const Comp = renderAs
+            return (
+              <Comp {...getItemProps?.(item)} className={styles.itemLink}>
+                {item.icon && <span className={styles.icon}>{item.icon}</span>}
+                <span>{item.label}</span>
+              </Comp>
+            )
+          })() : (
+            <>
+              {item.icon && <span className={styles.icon}>{item.icon}</span>}
+              <span>{item.label}</span>
+            </>
+          )}
           {hasChildren && (
-            <button
-              tabIndex={-1}
+            <span
               aria-hidden="true"
-              data-item-key={item.key}
               className={clsx(styles.expandIcon, isExpanded && styles.expandIconOpen)}
-              onClick={handleExpandClick}
             >
-              ▶
-            </button>
+              <ChevronRight size="1em" />
+            </span>
           )}
         </div>
         {hasChildren && isExpanded && (

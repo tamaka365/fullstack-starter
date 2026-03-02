@@ -44,20 +44,23 @@ export interface MenuListProps {
   /** 当前激活条目的 key */
   activeKey?: string
   /**
-   * 条目内容的多态渲染函数，由调用方决定元素类型（`<a>`、`<button>` 等）和内容布局。
+   * 条目的渲染元素类型，可传 `'a'`、`'button'` 等 HTML 标签或任意 React 组件。
    * MenuList 负责列表结构、激活态、展开/收起和键盘导航；
-   * 条目内部的图标、文字排布等完全由���函数控制。
+   * 条目图标与文字固定作为其 children 渲染。
    *
    * @example
    * ```tsx
-   * renderItem={(item, { isActive }) => (
-   *   <a href={item.key} style={{ fontWeight: isActive ? 'bold' : 'normal' }}>
-   *     {item.icon} {item.label}
-   *   </a>
-   * )}
+   * // 渲染为链接
+   * <MenuList renderAs="a" getItemProps={(item) => ({ href: item.key })} ... />
+   * // 渲染为按钮
+   * <MenuList renderAs="button" getItemProps={(item) => ({ onClick: () => select(item.key) })} ... />
+   * // 渲染为 Next.js Link
+   * <MenuList renderAs={Link} getItemProps={(item) => ({ href: item.key })} ... />
    * ```
    */
-  renderItem: (item: MenuItemData, meta: RenderItemMeta) => React.ReactNode
+  renderAs?: React.ElementType
+  /** 返回每个条目传给 renderAs 的额外 props（如 href、onClick 等） */
+  getItemProps?: (item: MenuItemData) => Record<string, unknown>
   /** 非受控：初始展开的条目 key 列表 */
   defaultExpandedKeys?: string[]
   /** 受控：当前展开的条目 key 列表，与 onExpandedKeysChange 配合使用 */
@@ -65,4 +68,3 @@ export interface MenuListProps {
   /** 受控：展开状态变化回调 */
   onExpandedKeysChange?: (keys: string[]) => void
 }
-

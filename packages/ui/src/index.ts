@@ -2,7 +2,7 @@ export { UIProvider } from './ui-provider/UIProvider'
 
 export { Sidebar, useSidebar } from './sidebar/Sidebar'
 export { SidebarNav } from './sidebar/SidebarNav'
-export type { SidebarProps, SidebarNavProps, SidebarNavItemData, SidebarContextValue } from './sidebar/types'
+export type { SidebarProps, SidebarNavProps, SidebarNavItemData, SidebarNavGroupData, SidebarContextValue } from './sidebar/types'
 
 export { Popover } from './popover/Popover'
 export type { PopoverProps, PopoverTrigger, TriggerProps, Placement } from './popover/types'
@@ -16,5 +16,4 @@ export type {
   MenuItemData,
   MenuGroupData,
   MenuListItem,
-  RenderItemMeta,
 } from './menu-list/types'

@@ -6,13 +6,6 @@ export const nav = style({
   flexDirection: 'column',
 })
 
-/** 展开态导航链接 reset（消除 <a> 浏览器默认样式） */
-export const navLink = style({
-  color: 'inherit',
-  textDecoration: 'none',
-  display: 'block',
-})
-
 /** 折叠态图标列容器 */
 export const collapsedNav = style({
   display: 'flex',
