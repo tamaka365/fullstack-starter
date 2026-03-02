@@ -1,6 +1,22 @@
 # Changelog
 
-## v0.10.0 — ui-example docs 路由（2026-03-02）
+## v0.9.3 — lucide-react 集成 + peerDependencies 重组（2026-03-02）
+
+- `packages/ui/package.json`：所有运行时依赖迁移到 `peerDependencies`（含 `@floating-ui/react`、`@vanilla-extract/css`、`clsx`），消除 `dependencies` / `devDependencies` 冗余；仅保留 `@types/react`、`typescript` 作为纯构建工具放入 `devDependencies`；peer 版本范围改为宽松下界（`>=`），不锁上界
+- `packages/ui/package.json`：新增 `lucide-react >=0.300.0` peer 依赖
+- `packages/ui/src/menu-list/MenuList.tsx`：展开图标从 Unicode 字符 `▶` 改为 `lucide-react` 的 `ChevronRight`，`size="1em"` 跟随字号缩放；`<button>` 包裹层改为语义中性的 `<span aria-hidden>`，点击展开由父级 `div[role=menuitem]` 的 `onClick` 统一处理
+- `packages/ui/src/menu-list/MenuList.css.ts`：新增 `icon` class（`display: flex`，消除 SVG baseline 偏移）；`expandIcon` 移除 button reset 样式
+
+## v0.9.2 — MenuList API 重构 + SidebarNav 导航增强（2026-03-02）
+
+- `packages/ui/src/menu-list/types.ts`：`MenuListProps.renderItem` 改为 `renderAs?: React.ElementType` + `getItemProps?: (item) => Record<string, unknown>`，移除 `RenderItemMeta` 类型
+- `packages/ui/src/menu-list/MenuList.tsx`：`renderAs` 仅应用于叶子节点（`!hasChildren`），父节点行点击（`onClick={handleItemClick}`）直接触发展开/收起，无需单独点击箭头；移除 `handleExpandClick`
+- `packages/ui/src/sidebar/types.ts`：新增 `SidebarNavGroupData` 接口（`groupLabel` + `items`）；`SidebarNavItemData.href` 改为可选（有 children ���可省略）；`SidebarNavProps.items` 改为 `(SidebarNavItemData | SidebarNavGroupData)[]`
+- `packages/ui/src/sidebar/SidebarNav.tsx`：新增 `isSidebarNavGroup`、`toMenuListItem`、`flattenNavItems` 工具函数；新增 `collectAncestorKeys` 递归收集激活条目的祖先 key 链，传入 `MenuList` 的 `defaultExpandedKeys` 实现页面加载时自动展开父节点；`getItemProps` 增加 href 空值守卫
+- `packages/ui/src/sidebar/SidebarNav.css.ts`：移除多余样式
+- `packages/ui/src/index.ts`：导出 `SidebarNavGroupData`；移除已删除的 `RenderItemMeta`
+
+## v0.9.1 — ui-example docs 路由（2026-03-02）
 
 - `packages/ui/src/sidebar/Sidebar.tsx`：加 `'use client'`，新增 `style` / `className` prop
 - `packages/ui/src/sidebar/SidebarNav.tsx`：加 `'use client'`

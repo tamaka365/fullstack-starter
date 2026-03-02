@@ -4,4 +4,4 @@ dist/
 build/
 *.local
 .DS_Store
-frontend/
+ui-example/
