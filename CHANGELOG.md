@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.9.0 — Sidebar + SidebarNav 组件（2026-03-02）
+
+- `packages/ui/src/sidebar/types.ts`：`SidebarContextValue`、`SidebarProps`、`SidebarNavItemData`、`SidebarNavProps` 类型定义，含完整 JSDoc
+- `packages/ui/src/sidebar/Sidebar.css.ts`：CSS variable `--sidebar-width` 驱动宽度，`transition: width 0.25s ease` 过渡动画，`scrollArea` flex 滚动区域
+- `packages/ui/src/sidebar/Sidebar.tsx`：`Sidebar` 组件，受控/非受控折叠状态，`SidebarContext` + `useSidebar` hook，`header` / `footer` slot
+- `packages/ui/src/sidebar/SidebarNav.css.ts`：折叠态 `iconButton` / `iconButtonActive` 样式，展开态 `nav` / `collapsedNav` 容器
+- `packages/ui/src/sidebar/SidebarNav.tsx`：`SidebarNav` 组件，消费 `useSidebar()` 感知折叠状态；展开态渲染完整 `MenuList`；折叠态渲染 icon 按钮 + `Popover` 弹出子菜单；`linkComponent` prop 处理路由链接，外链自动降级为 `<a target="_blank">`
+- `packages/ui/src/index.ts`：导出 `Sidebar`、`SidebarNav`、`useSidebar` 及全部类型
+- `ui-example/src/app/sidebar/page.tsx`：演示页面，覆盖非受控折叠、受控折叠、外链、禁用、含子菜单折叠态 Popover 六个场景
+
 ## v0.8.0 — Popover 组件（2026-03-02）
 
 - `packages/ui/src/ui-provider/UIProvider.tsx`：`UIProvider` 组件，渲染两个相邻 div（appRoot + portalRoot），通过 `PortalContext` 向下透传 portalRoot 引用；`usePortalRoot` hook 供浮层组件消费；`'use client'` 声明

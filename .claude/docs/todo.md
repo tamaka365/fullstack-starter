@@ -80,4 +80,14 @@
 
 详细文档：[.claude/docs/v0.8.0.md](.claude/docs/v0.8.0.md)
 
+状态：**已完成**
+
+---
+
+## v0.9.0 — Sidebar + SidebarNav 组件
+
+在 `packages/ui` 中实现侧边栏布局组件 `Sidebar` 和导航组件 `SidebarNav`，通过 `SidebarContext` 共享折叠状态；CSS transition 宽度动画；折叠态 hover Popover 弹出子菜单；`linkComponent` prop 处理路由/外链。
+
+详细文档：[.claude/docs/v0.9.0.md](.claude/docs/v0.9.0.md)
+
 状态：**进行中**
