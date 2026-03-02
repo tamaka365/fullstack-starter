@@ -12,11 +12,15 @@ function run(cmd, opts = {}) {
   return execSync(cmd, { encoding: 'utf-8', cwd: ROOT, ...opts }).trim()
 }
 
-// 1. 读取 / 记录 starter 地址
+// 1. 读取 starter 地址（优先级：.starter-remote > package.json starterRepo > prompt）
+const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf-8'))
 let upstreamUrl
 if (fs.existsSync(REMOTE_FILE)) {
   upstreamUrl = fs.readFileSync(REMOTE_FILE, 'utf-8').trim()
   console.log(`使用已记录的 starter 地址：${upstreamUrl}`)
+} else if (pkg.starterRepo) {
+  upstreamUrl = pkg.starterRepo
+  console.log(`使用 starter 地址：${upstreamUrl}`)
 } else {
   upstreamUrl = await input({ message: 'Starter 仓库地址（git remote URL）' })
   if (!upstreamUrl) process.exit(1)

@@ -1,6 +1,7 @@
 {
   "name": "fullstack-starter",
   "private": true,
+  "starterRepo": "https://github.com/tamaka365/fullstack-starter.git",
   "packageManager": "pnpm@10.30.3",
   "scripts": {
     "new": "node scripts/new.mjs",
