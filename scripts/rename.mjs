@@ -1,7 +1,7 @@
 import { select, input } from '@inquirer/prompts'
 import fs from 'node:fs'
 import path from 'node:path'
-import { listUserProjects, renameInWorkspace, ROOT } from './workspace.mjs'
+import { listUserProjects, renameInWorkspace, renameInGitignore, ROOT } from './workspace.mjs'
 
 const projects = listUserProjects()
 
@@ -46,3 +46,6 @@ if (fs.existsSync(pkgPath)) {
 
 renameInWorkspace(oldName, newName)
 console.log('✓ 已更新 pnpm-workspace.yaml')
+
+renameInGitignore(oldName, newName)
+console.log('✓ 已更新 .gitignore')

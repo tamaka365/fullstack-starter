@@ -2,6 +2,7 @@ import { select, input } from '@inquirer/prompts'
 import fs from 'node:fs'
 import path from 'node:path'
 import { execSync } from 'node:child_process'
+import { addToGitignore } from './workspace.mjs'
 
 const ROOT = process.cwd()
 
@@ -125,6 +126,10 @@ console.log(`✓ 已创建 ${projectName}/`)
 // --- 更新 pnpm-workspace.yaml ---
 addToWorkspace(projectName)
 console.log('✓ 已更新 pnpm-workspace.yaml')
+
+// --- 更新 .gitignore ---
+addToGitignore(projectName)
+console.log('✓ 已更新 .gitignore')
 
 // --- 依赖去重 ---
 if (fs.existsSync(projectPkgPath)) {

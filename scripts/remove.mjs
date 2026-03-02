@@ -1,7 +1,7 @@
 import { checkbox, confirm } from '@inquirer/prompts'
 import fs from 'node:fs'
 import path from 'node:path'
-import { listUserProjects, removeFromWorkspace, ROOT } from './workspace.mjs'
+import { listUserProjects, removeFromWorkspace, removeFromGitignore, ROOT } from './workspace.mjs'
 
 const projects = listUserProjects()
 
@@ -28,6 +28,7 @@ for (const name of selected) {
   fs.rmSync(path.join(ROOT, name), { recursive: true })
   console.log(`✓ 已删除 ${name}/`)
   removeFromWorkspace(name)
+  removeFromGitignore(name)
 }
 
 console.log('✓ 已更新 pnpm-workspace.yaml')

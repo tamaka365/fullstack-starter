@@ -36,4 +36,26 @@ export function renameInWorkspace(oldName, newName) {
   fs.writeFileSync(wsPath, content.replace(`  - '${oldName}'\n`, `  - '${newName}'\n`))
 }
 
+const GITIGNORE = path.join(ROOT, '.gitignore')
+
+export function addToGitignore(name) {
+  if (!fs.existsSync(GITIGNORE)) return
+  const content = fs.readFileSync(GITIGNORE, 'utf-8')
+  const entry = `${name}/`
+  if (content.split('\n').some(l => l.trim() === entry)) return
+  fs.writeFileSync(GITIGNORE, content.trimEnd() + '\n' + entry + '\n')
+}
+
+export function removeFromGitignore(name) {
+  if (!fs.existsSync(GITIGNORE)) return
+  const lines = fs.readFileSync(GITIGNORE, 'utf-8').split('\n')
+  fs.writeFileSync(GITIGNORE, lines.filter(l => l.trim() !== `${name}/`).join('\n'))
+}
+
+export function renameInGitignore(oldName, newName) {
+  if (!fs.existsSync(GITIGNORE)) return
+  const content = fs.readFileSync(GITIGNORE, 'utf-8')
+  fs.writeFileSync(GITIGNORE, content.replace(`${oldName}/\n`, `${newName}/\n`))
+}
+
 export { ROOT }
