@@ -27,7 +27,7 @@ if (selected.length === 0) process.exit(0)
 
 const ok = await confirm({
   message: `确认删除以下项目？${selected.join(', ')}`,
-  default: false,
+  default: true,
 })
 
 if (!ok) process.exit(0)
