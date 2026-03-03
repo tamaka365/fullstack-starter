@@ -14,15 +14,6 @@ export const collapsedNav = style([navBase, {
   gap: 2,
 }])
 
-/** 折叠态弹出子菜单容器 */
-export const popoverMenu = style({
-  background: '#fff',
-  borderRadius: 8,
-  boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
-  padding: '4px 0',
-  minWidth: 160,
-})
-
 /** 折叠态单个图标按钮 */
 export const iconButton = style({
   display: 'flex',
