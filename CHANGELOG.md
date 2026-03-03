@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.10.0 — Tooltip 组件（2026-03-03）
+
+- `packages/ui/src/tooltip/types.ts`：`TooltipProps` 类型定义，`content` / `children` / `placement` / `openDelay` / `closeDelay` / `disabled`，含完整 JSDoc
+- `packages/ui/src/tooltip/Tooltip.css.ts`：`tooltipContent` 样式（白色背景、`border-radius: 6`、`box-shadow`、`padding: 6px 10px`、`font-size: 0.875rem`、`white-space: nowrap`）
+- `packages/ui/src/tooltip/Tooltip.tsx`：`Tooltip` 组件，基于 `Popover` 封装，`triggers="hover"`，`React.cloneElement` 将 floating-ui ref 和事件注入子元素，`disabled` 时直接返回 `children`
+- `packages/ui/src/index.ts`：导出 `Tooltip`、`TooltipProps`
+
 ## v0.9.3 — lucide-react 集成 + peerDependencies 重组（2026-03-02）
 
 - `packages/ui/package.json`：所有运行时依赖迁移到 `peerDependencies`（含 `@floating-ui/react`、`@vanilla-extract/css`、`clsx`），消除 `dependencies` / `devDependencies` 冗余；仅保留 `@types/react`、`typescript` 作为纯构建工具放入 `devDependencies`；peer 版本范围改为宽松下界（`>=`），不锁上界

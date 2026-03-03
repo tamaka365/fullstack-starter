@@ -90,4 +90,15 @@
 
 详细文档：[.claude/docs/v0.9.0.md](.claude/docs/v0.9.0.md)
 
+状态：**已完成**
+
+---
+
+## v0.10.0 — Tooltip 组件
+
+在 `packages/ui` 中实现 `Tooltip` 组件，基于 `Popover` 封装，hover 触发，纯文本内容，统一样式，供 SidebarNav 折叠态及其他场景复用。
+
+详细文档：[.claude/docs/v0.10.0.md](.claude/docs/v0.10.0.md)
+
 状态：**进行中**
+

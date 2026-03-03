@@ -1,5 +1,8 @@
 export { UIProvider } from './ui-provider/UIProvider'
 
+export { Tooltip } from './tooltip/Tooltip'
+export type { TooltipProps } from './tooltip/types'
+
 export { Sidebar, useSidebar } from './sidebar/Sidebar'
 export { SidebarNav } from './sidebar/SidebarNav'
 export type { SidebarProps, SidebarNavProps, SidebarNavItemData, SidebarNavGroupData, SidebarContextValue } from './sidebar/types'
