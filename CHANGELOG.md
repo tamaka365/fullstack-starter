@@ -6,6 +6,8 @@
 - `packages/ui/src/tooltip/Tooltip.css.ts`：`tooltipContent` 样式（白色背景、`border-radius: 6`、`box-shadow`、`padding: 6px 10px`、`font-size: 0.875rem`、`white-space: nowrap`）
 - `packages/ui/src/tooltip/Tooltip.tsx`：`Tooltip` 组件，基于 `Popover` 封装，`triggers="hover"`，`React.cloneElement` 将 floating-ui ref 和事件注入子元素，`disabled` 时直接返回 `children`
 - `packages/ui/src/index.ts`：导出 `Tooltip`、`TooltipProps`
+- `ui-example/src/app/(docs)/tooltip/page.mdx` + `demo.tsx`：Tooltip 组件文档与示例，覆盖方位、禁用、图标按钮三个场景
+- `ui-example/src/app/(docs)/docs-sidebar.tsx`：侧边栏导航新增 Tooltip 入口
 
 ## v0.9.3 — lucide-react 集成 + peerDependencies 重组（2026-03-02）
 
