@@ -1,0 +1,29 @@
+import { LayoutDemo } from './demo'
+
+# Layout
+
+页面布局组件，基于 flexbox 实现。通过 `stickyHeader`、`stickySidebar`、`sidebarFull` 组合控制 header / sidebar / content 的固定与滚动行为。
+
+## Props
+
+| Prop | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `header` | `ReactNode` | — | 顶部导航区域 |
+| `sidebar` | `ReactNode` | — | 侧边栏 |
+| `footer` | `ReactNode` | — | 底部区域 |
+| `stickyHeader` | `boolean` | `true` | header 是否固定 |
+| `stickySidebar` | `boolean` | 同 `stickyHeader` | sidebar 是否固定 |
+| `sidebarFull` | `boolean` | `false` | sidebar 是否与 header 同级占满高度 |
+
+## 滚动模型
+
+| stickyHeader | stickySidebar | 滚动区域 |
+|---|---|---|
+| false | false | 文档自然滚动 |
+| true | false | header 下方整体 |
+| true | true | content + footer |
+| false | true + sidebarFull | sidebar 以外区域 |
+
+## 示例
+
+<LayoutDemo />

@@ -1,0 +1,20 @@
+import { Demo } from './demo'
+
+# MenuList
+
+树形菜单组件，支持分组、嵌套子菜单、受控/非受控展开状态、键盘导航和完整 ARIA 语义。
+
+## Props
+
+| Prop | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `items` | `MenuListItem[]` | — | 菜单数据（支持 `MenuItemData` 和 `MenuGroupData`） |
+| `activeKey` | `string` | — | 当前激活项的 key |
+| `renderItem` | `(item, meta) => ReactNode` | — | 自定义条目渲染 |
+| `defaultExpandedKeys` | `string[]` | `[]` | 非受控初始展开 keys |
+| `expandedKeys` | `string[]` | — | 受控展开 keys |
+| `onExpandedKeysChange` | `(keys: string[]) => void` | — | 展开变化回调 |
+
+## 示例
+
+<Demo />

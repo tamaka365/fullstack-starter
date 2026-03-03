@@ -1,0 +1,29 @@
+import { Demo } from './demo'
+
+# Sidebar
+
+侧边栏布局容器，持有折叠状态并通过 `SidebarContext` 向下透传。宽度过渡由 CSS variable `--sidebar-width` 驱动。
+
+## Props
+
+| Prop | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `collapsed` | `boolean` | — | 受控折叠状态 |
+| `defaultCollapsed` | `boolean` | `false` | 非受控初始状态 |
+| `onCollapsedChange` | `(v: boolean) => void` | — | 折叠变化回调 |
+| `expandedWidth` | `number` | `240` | 展开宽度（px） |
+| `collapsedWidth` | `number` | `56` | 折叠宽度（px） |
+| `header` | `ReactNode` | — | 顶部插槽（在 Context 内，可用 `useSidebar`） |
+| `footer` | `ReactNode` | — | 底部插槽 |
+
+## SidebarNav Props
+
+| Prop | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `items` | `SidebarNavItemData[]` | — | 导航数据 |
+| `linkComponent` | `ElementType` | `'a'` | 路由链接组件 |
+| `activeKey` | `string` | — | 当前激活 key |
+
+## 示例
+
+<Demo />
