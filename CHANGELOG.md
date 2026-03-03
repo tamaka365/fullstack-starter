@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.12.0 — CascadeMenu 级联弹出菜单（2026-03-03）
+
+- `packages/ui/src/cascade-menu/CascadeMenu.css.ts`：仅含 `menu`（白色背景容器，同原 `popoverMenu`）和 `chevron`（父节点右箭头）两个 class；item 相关样式直接复用 `MenuList.css.ts`，保证视觉完全一致
+- `packages/ui/src/cascade-menu/CascadeMenu.tsx`：`CascadeMenu` 组件，DOM 结构与 `MenuList` 保持一致（`div.item` 外层 + `Comp.itemLink` 内层）；叶子节点用 `renderAs` 渲染链接/按钮；父节点用 `Popover triggers="hover" placement="right-start"` 触发递归嵌套的下一级 `CascadeMenu`
+- `packages/ui/src/sidebar/SidebarNav.tsx`：折叠态有子菜单节点弹出内容改为 `<CascadeMenu />`，移除对折叠态 `MenuList` 和 `popoverMenu` 的引用
+- `packages/ui/src/sidebar/SidebarNav.css.ts`：删除 `popoverMenu` class（职责移入 `CascadeMenu`）
+- `packages/ui/src/index.ts`：导出 `CascadeMenu`、`CascadeMenuProps`
+
 ## v0.11.0 — SidebarNav 折叠态弹出菜单修复（2026-03-03）
 
 - `packages/ui/src/sidebar/SidebarNav.css.ts`：提取私有 `navBase` style，`nav` 和 `collapsedNav` 通过数组组合复用，消除重复声明；移除 `collapsedNav` 的 `padding: '4px 0'`（与展开态对齐，待后续统一添加）；新增 `popoverMenu` class（白色背景、`border-radius: 8`、`box-shadow`、`padding: 4px 0`、`minWidth: 160`）

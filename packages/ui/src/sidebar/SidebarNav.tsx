@@ -1,9 +1,12 @@
 'use client'
 
 import { clsx } from 'clsx'
+import { useState } from 'react'
+import type React from 'react'
 import { Popover } from '../popover/Popover'
 import type { TriggerProps } from '../popover/types'
 import { Tooltip } from '../tooltip/Tooltip'
+import { CascadeMenu } from '../cascade-menu/CascadeMenu'
 import { MenuList } from '../menu-list/MenuList'
 import type { MenuItemData, MenuListItem } from '../menu-list/types'
 import { useSidebar } from './Sidebar'
@@ -77,6 +80,50 @@ function collectAncestorKeys(
   return null
 }
 
+function CollapsedParentItem({
+  item,
+  isActive,
+  iconContent,
+  activeKey,
+  linkComponent,
+  getItemProps,
+}: {
+  item: SidebarNavItemData
+  isActive: boolean
+  iconContent: React.ReactNode
+  activeKey: string | undefined
+  linkComponent: React.ElementType
+  getItemProps: (menuItem: MenuItemData) => Record<string, unknown>
+}) {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <Popover
+      placement="right-start"
+      triggers="hover"
+      open={open}
+      onOpenChange={setOpen}
+      content={
+        <CascadeMenu
+          items={item.children!.map(toMenuItemData)}
+          activeKey={activeKey}
+          renderAs={linkComponent}
+          getItemProps={getItemProps}
+          onSelect={() => setOpen(false)}
+        />
+      }
+      trigger={(props: TriggerProps) => (
+        <button
+          {...props}
+          className={clsx(styles.iconButton, isActive && styles.iconButtonActive)}
+        >
+          {iconContent}
+        </button>
+      )}
+    />
+  )
+}
+
 export function SidebarNav({
   items,
   linkComponent = 'a',
@@ -134,28 +181,14 @@ export function SidebarNav({
         }
 
         return (
-          <Popover
+          <CollapsedParentItem
             key={item.key}
-            placement="right-start"
-            triggers="hover"
-            content={
-              <div className={styles.popoverMenu}>
-                <MenuList
-                  items={item.children!.map(toMenuItemData)}
-                  activeKey={activeKey}
-                  renderAs={linkComponent}
-                  getItemProps={getItemProps}
-                />
-              </div>
-            }
-            trigger={(props: TriggerProps) => (
-              <button
-                {...props}
-                className={clsx(styles.iconButton, isActive && styles.iconButtonActive)}
-              >
-                {iconContent}
-              </button>
-            )}
+            item={item}
+            isActive={Boolean(isActive)}
+            iconContent={iconContent}
+            activeKey={activeKey}
+            linkComponent={linkComponent}
+            getItemProps={getItemProps}
           />
         )
       })}

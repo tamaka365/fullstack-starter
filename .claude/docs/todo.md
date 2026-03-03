@@ -110,6 +110,17 @@
 
 详细文档：[.claude/docs/v0.11.0.md](.claude/docs/v0.11.0.md)
 
+状态：**已完成**
+
+---
+
+## v0.12.0 — SidebarNav 折叠态级联弹出菜单
+
+弹出菜单内若还有子节点，不用折叠展开，而是 hover 时再弹出下一级 Popover（级联菜单）。
+
+详细文档：[.claude/docs/v0.12.0.md](.claude/docs/v0.12.0.md)
+
 状态：**进行中**
+
 
 
