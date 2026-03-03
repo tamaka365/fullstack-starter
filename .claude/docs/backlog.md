@@ -2,26 +2,22 @@
 
 未规划的需求池，按来源归类整理，可以新增类型。
 
----
+## UI 组件
 
-## 项目模板
+### v0.11.0 — SidebarNav 折叠态弹出菜单修复
 
-- 模板支持多个，存放于 `templates/<name>/`，create 命令动态扫描可用模板
-- 初始模板：`templates/nextjs-basic`（Next.js 15 App Router，集成 vanilla-extract，引用 @starter/* 包，独立 tsconfig）
-- 初始模板：`templates/nestjs-basic`（NestJS 11，包含 health 端点，独立 tsconfig）
+依赖 v0.10.0 Tooltip 组件完成后再做。
 
----
+1. **弹出内容错误**：有子菜单时弹出的是父节点+子菜单，应只展示子菜单列表；无子菜单时不弹 Popover，改用 `Tooltip` 显示标题
+2. **弹出菜单缺背景**：浮层无背景色，与页面元素重叠，需加白色背景 + 阴影
+3. **折叠/展开态 nav 容器样式不一致**：两者应尽量复用同一套样式代码
 
-## create 命令
+### ui-example Tooltip 演示页面
 
-- 实现 `scripts/create.mjs`：动态扫描 `templates/` 目录列出可用模板，@inquirer/prompts 交互选择模板和目标目录名（默认 frontend / backend），从模板复制并执行 pnpm install，输出 next steps 提示
+在 `ui-example` 的 docs 路由中添加 Tooltip 组件演示页面（mdx + demo）。
 
----
 
-## templatize 命令
+依赖 v0.11.0 完成后再做。弹出菜单内若还有子节点，不应用折叠展开，而是 hover 时再弹出下一级 Popover（级联菜单）。
 
-- 实现 `scripts/templatize.mjs`：将 `frontend/` 或 `backend/` 开发测试完的项目转换为模板
-- 交互式询问目标模板名称
-- 复制项目到 `templates/<name>/`，排除 `node_modules`、`dist`、`.next`、`.env*`、`.DS_Store` 等产物
-- 更新模板 `package.json` 的 `name` 字段为模板名
-- 双向工作���：`create` 从模板生成项目，`templatize` 将项目保存回模板
+
+

@@ -1,5 +1,4 @@
 packages:
   - 'packages/*'
   - 'templates/*'
-  - 'frontend'
-  - 'backend'
+  - 'ui-example'

@@ -1,0 +1,34 @@
+# 关于 @starter/ui
+
+`@starter/ui` 是 fullstack-starter 内置的 React 组件库，基于 **vanilla-extract** 实现零运行时 CSS，所有组件均支持 `'use client'`。
+
+## 组件
+
+| 组件 | 说明 |
+|------|------|
+| Layout | 页面骨架，支持固定 header / sidebar |
+| MenuList | 菜单列表，支持分组、嵌套展开、键盘导航 |
+| Popover | 浮层，支持 hover / click / focus 触发 |
+| Sidebar | 侧边栏，支持折叠动画与受控/非受控模式 |
+
+## 安装
+
+```bash
+pnpm add @starter/ui
+```
+
+## 快速上手
+
+```tsx
+import { UIProvider, Layout, Sidebar, SidebarNav, MenuList } from '@starter/ui'
+
+export default function App() {
+  return (
+    <UIProvider>
+      <Layout sidebar={<Sidebar><SidebarNav items={navItems} /></Sidebar>}>
+        <main>内容区域</main>
+      </Layout>
+    </UIProvider>
+  )
+}
+```

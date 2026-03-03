@@ -2,7 +2,6 @@ node_modules/
 dist/
 .next/
 build/
-frontend/
-backend/
 *.local
 .DS_Store
+ui-example/

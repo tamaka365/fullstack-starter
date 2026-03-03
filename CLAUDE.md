@@ -15,11 +15,12 @@
 
 ## 分支策略
 
-- `dev` —— 日常开发，包含所有内容（含 `.claude/docs/`）
+- `cli-release` —— 日常开发，包含所有内容（含 `.claude/docs/`）
 - `main` —— 干净的模板分支，将来的新项目从此 clone
+- `dev` —— 预留给 clone 后创建的具体项目使用
 
-在 `dev` 上开发，发布时切到 `main` 执行 `git merge dev` ——
-`pre-merge-commit` hook 会自动过滤 dev 专用内容。
+在 `cli-release` 上开发，发布时切到 `main` 执行 `git merge cli-release` ——
+`pre-merge-commit` hook 会自动过滤 cli-release 专用内容。
 
 ## 重要：clone 后必做
 
@@ -37,7 +38,7 @@ pnpm install
 | 路径                 | 说明                                              |
 | -------------------- | ------------------------------------------------- |
 | `.claude/docs/`      | 内部开发文档（todo、版本日志）                    |
-| `CLAUDE.md`          | 本文件 —— dev 专用指引                            |
+| `CLAUDE.md`          | 本文件 —— cli-release 专用指引               |
 | `.gitignore.main`    | main 的 .gitignore 模板（同时作为 hook 哨兵文件） |
 | `CLAUDE.main.md`     | main 的 CLAUDE.md 模板（merge 后替换本文件）      |
 | `.claude/docs.main/` | main 的 .claude/docs/ 模板                        |
@@ -53,11 +54,11 @@ pnpm install
 
 维护 `.claude/docs/backlog.md` 作为需求池，按以下流程执行：
 
-1. **收集需求**：用户提出新需求时立即写入 `backlog.md`，循环提问直到用户明确表示没有为止
-2. **规划版本**：分析需求池，与用户逐条确认优先级与可行性，挑选适合下一版本的内容写入 `todo.md` 并从 `backlog.md` 中移除
+1. **收集需求**：用户提出新需求时立即写入 `backlog.md`，循环提问直到用户明确表示没有新需求为止
+2. **规划版本**：分析需求池，与用户逐条确认优先级与可行性，挑选适合下一版本的内容写入 `todo.md` 并从 `backlog.md` 中移除，只设计往后的一个版本
 3. **todo 格式**：每个版本条目包含版本简介、详细文档链接，并标注状态「进行中 / 已完成」，开发中实时更新
 4. **编写文档**：分析 todo 版本需求，与用户交互确认细节，编写对应的详细版本文档
-5. **开发节奏**：每完成详细文档中的一个步骤，立即更新 `CHANGELOG.md`并提交 git
+5. **开发节奏**：每完成详细文档中的一个步骤，执行 tsc 检查修复，并更新 `CHANGELOG.md`并提交 git
 
 ### 版本开发中出现新需求
 

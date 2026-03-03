@@ -1,0 +1,21 @@
+import { Demo } from './demo'
+
+# Popover
+
+浮层组件，基于 Floating UI 实现。支持 hover / click / focus 三种触发方式，方向感知动画，可挂载到 UIProvider portalRoot。
+
+## Props
+
+| Prop | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `trigger` | `(props: TriggerProps) => ReactNode` | — | 触发元素 render prop |
+| `content` | `ReactNode` | — | 浮层内容 |
+| `triggers` | `'hover' \| 'click' \| 'focus'` | `'hover'` | 触发方式 |
+| `placement` | `Placement` | `'bottom'` | 弹出位置 |
+| `open` | `boolean` | — | 受控开关 |
+| `onOpenChange` | `(open: boolean) => void` | — | 开关变化回调 |
+| `offset` | `number` | `8` | 偏移距离（px） |
+
+## 示例
+
+<Demo />
