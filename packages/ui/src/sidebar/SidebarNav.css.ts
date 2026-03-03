@@ -25,8 +25,6 @@ export const popoverMenu = style({
 
 /** 折叠态单个图标按钮 */
 export const iconButton = style({
-  width: 36,
-  height: 36,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
