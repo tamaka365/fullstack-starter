@@ -3,6 +3,7 @@
 import { clsx } from 'clsx'
 import { Popover } from '../popover/Popover'
 import type { TriggerProps } from '../popover/types'
+import { Tooltip } from '../tooltip/Tooltip'
 import { MenuList } from '../menu-list/MenuList'
 import type { MenuItemData, MenuListItem } from '../menu-list/types'
 import { useSidebar } from './Sidebar'
@@ -120,15 +121,15 @@ export function SidebarNav({
           const Comp = isExternal ? 'a' : (linkComponent as React.ElementType<React.AnchorHTMLAttributes<HTMLAnchorElement>>)
           const extraProps = isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {}
           return (
-            <Comp
-              key={item.key}
-              href={item.href}
-              {...extraProps}
-              title={item.label}
-              className={clsx(styles.iconButton, isActive && styles.iconButtonActive)}
-            >
-              {iconContent}
-            </Comp>
+            <Tooltip key={item.key} content={item.label} placement="right">
+              <Comp
+                href={item.href}
+                {...extraProps}
+                className={clsx(styles.iconButton, isActive && styles.iconButtonActive)}
+              >
+                {iconContent}
+              </Comp>
+            </Tooltip>
           )
         }
 
@@ -138,17 +139,18 @@ export function SidebarNav({
             placement="right-start"
             triggers="hover"
             content={
-              <MenuList
-                items={[toMenuItemData(item)]}
-                activeKey={activeKey}
-                renderAs={linkComponent}
-                getItemProps={getItemProps}
-              />
+              <div className={styles.popoverMenu}>
+                <MenuList
+                  items={item.children!.map(toMenuItemData)}
+                  activeKey={activeKey}
+                  renderAs={linkComponent}
+                  getItemProps={getItemProps}
+                />
+              </div>
             }
             trigger={(props: TriggerProps) => (
               <button
                 {...props}
-                title={item.label}
                 className={clsx(styles.iconButton, isActive && styles.iconButtonActive)}
               >
                 {iconContent}

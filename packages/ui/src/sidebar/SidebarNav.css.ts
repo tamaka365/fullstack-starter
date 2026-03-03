@@ -1,18 +1,26 @@
 import { style } from '@vanilla-extract/css'
 
-/** 展开态导航容器 */
-export const nav = style({
+const navBase = style({
   display: 'flex',
   flexDirection: 'column',
 })
 
+/** 展开态导航容器 */
+export const nav = style([navBase])
+
 /** 折叠态图标列容器 */
-export const collapsedNav = style({
-  display: 'flex',
-  flexDirection: 'column',
+export const collapsedNav = style([navBase, {
   alignItems: 'center',
-  padding: '4px 0',
   gap: 2,
+}])
+
+/** 折叠态弹出子菜单容器 */
+export const popoverMenu = style({
+  background: '#fff',
+  borderRadius: 8,
+  boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
+  padding: '4px 0',
+  minWidth: 160,
 })
 
 /** 折叠态单个图标按钮 */

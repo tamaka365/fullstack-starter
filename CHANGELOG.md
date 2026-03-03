@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.11.0 — SidebarNav 折叠态弹出菜单修复（2026-03-03）
+
+- `packages/ui/src/sidebar/SidebarNav.css.ts`：提取私有 `navBase` style，`nav` 和 `collapsedNav` 通过数组组合复用，消除重复声明；移除 `collapsedNav` 的 `padding: '4px 0'`（与展开态对齐，待后续统一添加）；新增 `popoverMenu` class（白色背景、`border-radius: 8`、`box-shadow`、`padding: 4px 0`、`minWidth: 160`）
+- `packages/ui/src/sidebar/SidebarNav.tsx`：叶子节点移除 `Popover`，改用 `<Tooltip placement="right">` 显示 `item.label`；有子菜单节点弹出内容改为 `item.children.map(toMenuItemData)`（修复之前误将父节点本身纳入列表的问题），`MenuList` 外包裹 `<div className={styles.popoverMenu}>` 提供白色背景；导入 `Tooltip`
+
 ## v0.10.0 — Tooltip 组件（2026-03-03）
 
 - `packages/ui/src/tooltip/types.ts`：`TooltipProps` 类型定义，`content` / `children` / `placement` / `openDelay` / `closeDelay` / `disabled`，含完整 JSDoc
